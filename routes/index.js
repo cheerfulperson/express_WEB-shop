@@ -2,17 +2,34 @@ const express = require('express');
 const fs = require('fs');
 const {
   request,
-  response
+  response,
+  routes
 } = require('../app');
+const { route } = require('./registration');
+const hbs = require('hbs');
+const app = require('../app');
 
 const router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', {
-    title: 'GENERAL PAGE',
-  });
+  let categoris = ["phones", "computer", "house", "appliances", "sport", "cosmetics", "books", "eat", "for Kids", "car"];
+  if(req.session.user !== undefined){
+    res.render('index', {
+      title: 'GENERAL PAGE',
+      categoris: categoris,
+      email: req.session.user,
+      isUser: true,
+    });
+  }else{
+    res.render('index', {
+      title: 'GENERAL PAGE',
+      categoris: categoris,
+      isUser: false,
+    });
+  }
 });
+
 
 
 

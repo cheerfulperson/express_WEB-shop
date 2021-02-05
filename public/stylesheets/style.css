@@ -1,13 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
 
 @keyframes loader {
-  0% {border-bottom: 0;}
-  100%{border-bottom: 0;} 
+  0% {
+    transform: rotate(0)
+  }
+
+  100% {
+    transform: rotate(-360deg)
+  }
 }
+
 @keyframes fallDown {
-  0% {transform: translate(0,0)}
-  100%{transform: translate(0, 15%)}
+  0% {
+    transform: translate(0, 0)
+  }
+
+  100% {
+    transform: translate(0, 15%)
+  }
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,39 +28,55 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
+  width: 100%;
   height: 100vh;
-  background:rgb(253, 253, 253);
+  background: rgb(233, 233, 233);
   font-family: 'Quicksand', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
-header{
+
+header {
   top: 0;
-  position: absolute;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 20vh;
+}
+
+header .top_header {
+  top: 0;
   width: 100%;
   height: 8vh;
-  background: #ffffff80;
+
   display: inline-flex;
   position: relative;
-
+  text-align: center;
   align-items: center;
+
+  background: #ffffff80;
   box-shadow: 0 2px 0px rgba(0, 0, 0, .25);
 }
-.logo{
+
+.logo {
   position: relative;
   display: inline-flex;
   float: left;
-  left: 2vh; right: 0;
+  left: 2vh;
+  right: 0;
   color: #00acac;
 }
-.header-menu{
+
+.header-menu {
   margin: auto;
+  text-align: center;
   position: relative;
   display: inline-flex;
 }
-.header-menu a{
+
+.header-menu a {
   /* margin: 10px; */
   padding: 10px;
 
@@ -61,29 +89,246 @@ header{
 
   text-decoration: none;
 }
-.header-menu a:hover{
-    background: #ebeaea;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+
+.header-menu a:hover {
+  background: #ebeaea;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
 }
-.block-of-person-info{
-  position: relative;
+
+header .bottom_header {
+  top: 1vh;
+  width: 1200;
+  height: 8vh;
+
   display: inline-flex;
+  position: relative;
+  text-align: center;
+  align-items: center;
 }
-.btnflip{
-  margin: 10px;
-  padding: 10px;
+
+header .bottom_header .fined {
+  width: 55vw;
+  height: 42px;
+  border: 1px solid rgb(207, 207, 207);
+
+  display: inline-flex;
+  position: relative;
+
+}
+
+header .bottom_header .fined input {
+  border: none;
+  width: 50vw;
+  height: 40px;
+  position: relative;
+  margin: auto;
+}
+
+header .bottom_header input::after,
+header .bottom_header input:focus {
+  outline: none;
+}
+
+header .bottom_header .fined button {
+  border: none;
+  width: 5vw;
+}
+
+.block-of-person-info {
+  position: relative;
+  display: flex;
+  float: right;
+  background: none;
+  z-index: 1;
+  left: 8vw;
+
+  align-items: center;
+  text-align: center;
+  height: 40px;
+
+  border-radius: 10px;
+  border: 2px solid #d6d6d6;
+}
+
+.btn_log-out {
+  margin-right: 4vw;
+  padding: 4px;
+  border: none;
+  background: none;
+}
+
+.btnflip {
+
+  padding-top: 9.5px;
+  padding-bottom: 9.5px;
+  padding-right: 10px;
+  padding-left: 10px;
 
   text-align: center;
   text-transform: uppercase;
   position: relative;
-  overflow:hidden;
-  border-radius: 10px;
+  overflow: hidden;
 
+  border: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   text-decoration: none;
 }
-.btnflip:hover{
-  background: #ebeaea;
+
+.btnflip:hover {
+  background: #ffffff;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, .25);
+}
+
+.log-in-with-SN:nth-child(2) {
+  padding: 9px;
+  border-right: 1px solid #d6d6d6;
+  border-left: 1px solid #d6d6d6;
+}
+
+.log-in-with-SN:nth-child(3) {
+  padding: 9px;
+  border: none;
+}
+
+.log-in-with-SN:nth-child(4) {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 9px;
+  border-left: 1px solid #d6d6d6;
+}
+
+.log-in-with-SN:hover {
+  background: #ffffff;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, .25);
+}
+
+.settings {
+  background: none;
+  border: none;
+}
+
+.settings:hover svg {
+  animation: loader 2s infinite linear;
+}
+
+.settings:active,
+.settings:focus {
+  outline: none;
+}
+
+.btn_log-out:hover {
+
+  border-radius: 5px;
+  background: rgb(156, 156, 156);
+}
+
+/* Add padding to containers */
+.container {
+  width: 30vw;
+  top: 0;
+  left: 0;
+  margin-top: 0;
+
+  padding: 16px;
+  background: rgb(255, 255, 255);
   box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+/* Full-width input fields */
+input[type=email],
+input[type=password],
+input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.placeholder::placeholder {
+  color: red;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.none-registerbtn{
+  background-color: #c7c7c7;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+.main_block {
+  margin-top:10px;
+  width: 90vw;
+  height: 100vh;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+.categoris {
+  width: 100%;
+  position: relative;
+  padding-top: 10px;
+}
+
+.categoris ul li{
+  width: 10%;
+    border-right: 1px solid #e6e6e6;
+    background: #fff;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    vertical-align: top;
+    user-select: none;
+   
+}
+.categoris ul{
+  width: 100%;
+
+  position: relative;
+  display: flex;
+
+  list-style-type: none;
+
+
+  align-items: center;
+  text-align: center;
 }
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
 @media screen and (max-width: 500px) {
@@ -92,15 +337,16 @@ header{
     display: block;
     text-align: left;
   }
+
   header-right {
     float: none;
   }
 }
 
 @media (max-width: 800px) {
-  header{   
+  header {
     height: 6vh;
   }
 
 
-} 
+}

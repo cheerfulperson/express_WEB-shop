@@ -17,6 +17,8 @@ router.post('/', function(req, res, next) {
     }
 
     db.query(`SELECT email, password FROM mytable WHERE (email=? and password=?)`, [user.email, user.password], function (error, results) {
+        if (error) console.error(error);
+
         if (results.length==0){
             res.render('layouts/login', {isBottonHeader: false, isVisiableMainBlock: false, isNotCorectUsersData: true});
         }

@@ -58,7 +58,6 @@ router.post('/', function (req, res, next) {
           db.query(insertUserSQL, [user.id, user.email, user.password, user.name, user.personalID], (error, results) => {
             if (error) console.log(error);
             else res.redirect('/login');
-            db.end();
           });
         });
         // Добавить пользователя. С*ка вот здесь он не работает, а теперь работает

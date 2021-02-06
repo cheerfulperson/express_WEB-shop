@@ -263,33 +263,7 @@ hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
-.password{
-  background: #f1f1f1;
-  width: 100%;
-  display: inline-flex;
-  position: relative;
-  border: none;
-  vertical-align: top;
-  margin: 5px 0 22px 0;
-}
 
-.password input {
-  display: block;
-  margin: 0 0 0 0;
-  width: 100%;
-}
-
-.password input:focus .password{
-  background-color: #ddd;
-}
-.password div {
-  border: none; 
-  width: 10%;
-  margin-left: 90%;
-  margin-top: 15px;
-  position: absolute;
-  cursor: pointer;
-}
 /* Set a style for the submit/register button */
 .none-registerbtn{
   background-color: #c7c7c7;

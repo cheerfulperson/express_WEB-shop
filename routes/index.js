@@ -5,7 +5,7 @@ const {
   response,
   routes
 } = require('../app');
-const route = require('./registration');
+const { route } = require('./registration');
 const hbs = require('hbs');
 const app = require('../app');
 
@@ -16,14 +16,14 @@ router.get('/', function (req, res, next) {
   let categoris = ["phones", "computer", "house", "appliances", "sport", "cosmetics", "books", "eat", "for Kids", "car"];
   if(req.session.user !== undefined){
     res.render('index', {
-      name: req.session.name,
+      title: 'GENERAL PAGE',
       categoris: categoris,
       email: req.session.user,
       isUser: true,
     });
   }else{
     res.render('index', {
-      name: req.body.name,
+      title: 'GENERAL PAGE',
       categoris: categoris,
       isUser: false,
     });

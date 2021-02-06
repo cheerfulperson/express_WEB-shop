@@ -1,8 +1,7 @@
 <header>
     <div class="top_header">
         <div class="logo">
-            {{!-- Убрать стиль ссылки --}}
-            <h1><a href="/">ELECTRONS</a></h1>
+            <h1>ELECTRONS</h1>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-broadcast-pin" viewBox="0 0 16 16">
                 <path
@@ -10,11 +9,12 @@
             </svg>
         </div>
         <menu class="header-menu">
-            <a class="active" href="/">Каталог</a>
-            <a href="/news">Новости</a>
-            <a href="/contacts">Контакты</a>
+            <a class="active" href="/">Catalog</a>
+            <a href="/news">News</a>
+            <a href="/forum">Forum</a>
+            <a href="/contacts">Contacts</a>
         </menu>
-        {{#if isUser}}<b style="color: salmon;"> {{name}}, Добро пожаловать!</b>{{/if}}</p>
+        <p style="margin-right: 40px;">Welcome to {{getTitle title}}{{#if isUser}}<b style="color: salmon;">, mister with email: {{email}}.</b>{{/if}}</p>
     </div>
     {{#if (getBottonHeader isBottonHeader)}}
     <div class="bottom_header">
@@ -47,7 +47,7 @@
             <input type="button" class="btn_log-out" value="log out">
             {{else}}
             {{!-- <a class="btnflip" href="/registration">sing out</a> --}}
-            <a class="btnflip" href="/login">Войти</a>
+            <a class="btnflip" href="/login">sing in</a>
             <a class="log-in-with-SN" href="/">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-facebook" viewBox="0 0 16 16">

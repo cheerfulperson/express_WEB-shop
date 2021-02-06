@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const indexRouter = require('./routes/index');
 const registrationRouter = require('./routes/registration');
 const newsRouter = require('./routes/news');
-
+const forumRouter = require('./routes/forum');
 const contactsRouter = require('./routes/contacts');
 const loginRouter = require('./routes/login');
 
@@ -59,14 +59,13 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-
 // connect another router
 app.use('/', indexRouter);
 app.use('/registration', registrationRouter);
 app.use('/news', newsRouter);
+app.use('/forum', forumRouter);
 app.use('/contacts', contactsRouter);
 app.use('/login', loginRouter);
-
 
 // log out from accaunt
 app.post('/logout', (req, res) => {

@@ -1,3 +1,7 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-<input type="email">{{input}}</input>
+<div class="categoris">
+    <ul>
+        {{#each categoris}}
+        <li>{{toUpperCase this}}</li>
+        {{/each}}
+    </ul>
+</div>

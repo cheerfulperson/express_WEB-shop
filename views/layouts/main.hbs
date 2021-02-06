@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/js/index.js"></script>
+  </head>
+  <body>
+    {{> header}}  
+    {{#if (getMainBlock isVisiableMainBlock)}}
+    <div class="main_block">
+      {{{body}}}
+    </div>
+    {{else}}
+      {{{body}}}
+    {{/if}}
+  </body>
+</html>

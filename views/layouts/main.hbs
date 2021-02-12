@@ -5,14 +5,19 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="/js/index.js"></script>
   </head>
+  {{!-- Вызов общих объектов и переменных, которые действуют на все маршруты --}}
+  {{getLoginUserProfil}}
   <body>
     {{> header}}  
-    {{#if (getMainBlock isVisiableMainBlock)}}
+    {{#if (getMainBlock isVisiableMainBlock)}}  
     <div class="main_block">
+      {{>find}}
       {{{body}}}
     </div>
     {{else}}
       {{{body}}}
+      
     {{/if}}
+        
   </body>
 </html>

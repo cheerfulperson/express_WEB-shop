@@ -1,42 +1,20 @@
 <form action="/registration" method="post">
     <div class="container">
-        <h1>Register</h1>
-        <p>Please fill in this form to create an account.</p>
+        <h1>Регистрация</h1>
+        <p>Пожалуйста, заполните эту форму, чтобы создать учетную запись.</p>
         <hr>
 
-        <label for="name"><b>Name</b></label>
-        <input type="text" placeholder="Enter name: Poool" name="name" value={{name}}>
+        <label for="name"><b>Имя</b></label>
+        <input type="text" placeholder="Пример: Иван" name="name" value={{name}}>
 
-        <label for="email"><b>Email</b></label>
-        <input type="email" placeholder=
-        {{#if isEmailsReapet}}
-            "Email is already busy" class="placeholder" 
-        {{else}}
-            "Enter Email: electrons.contact@gmail.com" class=""
-        {{/if}}  
-        name="email" >
+        <label for="email"><b>Почта</b></label>
+        <input type="email" placeholder={{#if isEmailsReapet}} "Электронная почта уже занята" class="placeholder"
+            {{else}} "Пример: electrons.contact@gmail.com" class="" {{/if}} name="email">
 
-        <label for="psw"><b>Password</b></label>
-       <div class="password">
-            <input type="password" id="password" placeholder="Enter Password" name="password" value={{password}}>
-            <div id="showPasswordBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z" />
-                </svg>
-            </div>
-        </div>
-
-        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <label for="psw"><b>Пароль</b></label>
         <div class="password">
-                <input id="passwordRepeat" type="password" placeholder=
-            {{#if isPasswordUnRepeat}}
-                "Password is not reapet" class="placeholder" 
-            {{else}}    
-                "Repeat Password" class=""
-            {{/if}}
-                name="passwordRepeat" value={{pwsReapet}}>
+
+            <input id="password" type="password" placeholder="Введите пароль" name="password" value={{password}}>
             <div id="showPasswordBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock"
                     viewBox="0 0 16 16">
@@ -46,16 +24,30 @@
             </div>
         </div>
 
-        <hr>
-
-        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-        <div id="regBtn">
-            <div class="none-registerbtn">Register</div>                 
+        <label for="psw-repeat"><b>Повторите пароль</b><p id="checkPsw"></p></label>
+        <div class="password">
+            <input id="passwordRepeat" type="password" placeholder={{#if isPasswordUnRepeat}} "Пароль не повтораяется"
+                class="placeholder" {{else}} "Повторите пароль" class="" {{/if}} name="passwordRepeat"
+                value={{pwsReapet}}>
+            <div id="showPasswordBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z" />
+                </svg>
+            </div>
         </div>
+        <hr>
         
-    
-    <div class="container-signin">
-        <p>Already have an account? <a href="/login">Sign in</a>.</p>
+        <p><input type="checkbox"> Создавая учетную запись, вы соглашаетесь с нашими <a href="#">Terms & Privacy</a>.</p>
+        <div id="regBtn">
+            <div class="none-registerbtn">Регистрация</div>
+        </div>
+
+
+        <div class="container-signin">
+            <p>Уже есть аккаунт? <a href="/login">Войти</a>.</p>
+        </div>
     </div>
     </div>
 </form>

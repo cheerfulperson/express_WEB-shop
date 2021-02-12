@@ -13,21 +13,14 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  let categoris = ["phones", "computer", "house", "appliances", "sport", "cosmetics", "books", "eat", "for Kids", "car"];
-  if(req.session.user !== undefined){
-    res.render('index', {
-      title: 'GENERAL PAGE',
-      categoris: categoris,
-      email: req.session.user,
-      isUser: true,
-    });
-  }else{
-    res.render('index', {
-      title: 'GENERAL PAGE',
-      categoris: categoris,
-      isUser: false,
-    });
-  }
+
+  let categoris = ["Телефоны и аксессуары", "Компьютеры", "Электроника", "Одежда", "Для детей", "Автотовары", "Спорт и развлечения", "Красота и здоровье", "Зоотовары", "Бижутерия и часы"];
+
+  res.render('index', {
+    title: 'GENERAL PAGE',
+    categoris: categoris,
+  })
+
 });
 
 

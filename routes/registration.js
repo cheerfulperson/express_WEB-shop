@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('../moduls/DB-config');
+const crypto = require('crypto');
 
 const router = express.Router();
 
@@ -23,15 +24,16 @@ router.post('/', function (req, res, next) {
   }
 
   let user = {
-    id: 0,
     email: req.body.email,
     password: req.body.password,
     name: req.body.name,
-    personalID: Math.round(Math.random() * 99999)
+    //Зашифрованный personalID
+    personalID: crypto.randomBytes(4).toString('hex'),
+    type_user: 0
   }
 
   let selectSQL = `SELECT email FROM mytable WHERE (email=?)`;
-  let insertUserSQL = `INSERT INTO mytable(id, email, password, name, personalID) VALUES (?,?,?,?,?)`;
+  let insertUserSQL = `INSERT INTO mytable(email, password, name, personalID, type_user) VALUES (?,?,?,?,?)`;
   let hbsOptionsObject = {
     isBottonHeader: false,
     isEmailsReapet: true,
@@ -48,18 +50,14 @@ router.post('/', function (req, res, next) {
     // Проверка 
     db.query(selectSQL, [user.email, user.name], function (error, results) {
       if (error) console.log(error);
-      
-
-
       if (results.length === 0) {
 
-        db.query('SELECT * FROM mytable', (err, results) => {
-          user.id = results.length;
-          db.query(insertUserSQL, [user.id, user.email, user.password, user.name, user.personalID], (error, results) => {
+
+          db.query(insertUserSQL, [user.email, user.password, user.name, user.personalID, user.type_user], (error, results) => {
             if (error) console.log(error);
             else res.redirect('/login');
           });
-        });
+
         // Добавить пользователя. С*ка вот здесь он не работает, а теперь работает
 
       } else {

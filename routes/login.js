@@ -13,7 +13,11 @@ router.post('/', function(req, res, next) {
     
     let user = {
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        bascket: '',
+        name: '',
+        personalID: null,
+        type_user: 0
     }
 
     db.query(`SELECT email, password FROM mytable WHERE (email=? and password=?)`, [user.email, user.password], function (error, results) {
@@ -23,8 +27,16 @@ router.post('/', function(req, res, next) {
             res.render('layouts/login', {isBottonHeader: false, isVisiableMainBlock: false, isNotCorectUsersData: true});
         }
         else{
-            req.session.user = user.email;
-            res.redirect('/');
+            // Ищем данного пользователя
+            db.query(`SELECT * FROM mytable WHERE (email='${user.email}' and password='${user.password}')`, (error, results) => {
+                // Добавляем пользователя в сессию
+                // ????????????????? Пароль я не шифровал и не обязательно его вообще в сессию добавлять???????????????????
+                user.name = results[0].name;
+                user.personalID = results[0].personalID;
+                user.type_user = results[0].type_user;
+                req.session.user = user;
+                res.redirect('/');
+            })
         }
       });  
 })

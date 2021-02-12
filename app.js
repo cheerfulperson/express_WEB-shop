@@ -7,6 +7,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
+const hbsCreater = require('./moduls/hbsCreater');
+
 const indexRouter = require('./routes/index');
 const registrationRouter = require('./routes/registration');
 const newsRouter = require('./routes/news');
@@ -27,18 +29,20 @@ app.engine('hbs', expressHbs( {
     getTitle: (title) => {
       return title == undefined ? "No title" : title
     },
-    getBottonHeader: (isBeing) => {
-      return isBeing == undefined ? true : false;
-    },
     toUpperCase: (word) =>{
       return word.toUpperCase();
     },
     getMainBlock: (isUserlogin) => {
       return isUserlogin == undefined ? true : false;
-    }
+    },
+    
   }
 }));
 app.set('view engine', 'hbs');
+
+// Cоздаем хранилище для сессий
+const sessionHandler = require('./moduls/db-session');
+const store = sessionHandler.createStore();
 
 // logger отвечает за логирование HTTP запросов, 
 // cookieParser — за обработку cookies, 
@@ -54,12 +58,28 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('secret key'));
 app.use(express.static(path.join(__dirname, 'public')));
+// Создание сесси
 app.use(session({
+  store: store,
   secret: 'you secret key',
   saveUninitialized: true,
 }));
 
-// connect another router
+// Действия на всех страницах(отображение hbs элементов, выполнение проверок, отправка данных и тд);
+app.use('/', (req, res, next) => {
+
+  if(req.session.user != undefined){
+    hbsCreater.createHelpMenu(req, res);
+  }
+    hbsCreater.getIsUser(req, res);
+
+  next();
+})
+
+process.on('SIGINT', function () {
+  console.log('Got SIGINT. Press Ctrl-C to exit.');
+});
+
 app.use('/', indexRouter);
 app.use('/registration', registrationRouter);
 app.use('/news', newsRouter);
@@ -70,8 +90,10 @@ app.use('/login', loginRouter);
 // log out from accaunt
 app.post('/logout', (req, res) => {
 
- req.session.user = undefined;
- res.redirect('/');
+ req.session.destroy(()=>{
+  res.redirect('/');
+ });
+ 
 
 })
 // catch 404 and forward to error handler

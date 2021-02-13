@@ -67,9 +67,9 @@ function gethelperMenu(req, res) {
           ]]; 
         
         // Проверка на тип пользователя
-        if(user.type_user == 0) typeUser = 'пользователь';
-        else if(user.type_user == 1) typeUser = 'продавец';
-        else if(user.type_user == 2) typeUser = 'админ';
+        if(user.type_user == 0) typeUser = 'Пользователь';
+        else if(user.type_user == 1) typeUser = 'Продавец';
+        else if(user.type_user == 2) typeUser = 'Админ';
         
         // Создание блока
         let block = '<p>Вы вошли как ' + typeUser + ' <b>' + user.name + '</b></p><hr>';
@@ -79,11 +79,11 @@ function gethelperMenu(req, res) {
           let arr = arrayOfuserLocks[i];
             for (let j = 0; j < arr.length; j++) {
               let el = arr[j];
-              if(typeUser == 'пользователь'){
+              if(typeUser == 'Пользователь'){
                 if(el.typeUser == 0) block += `<a href=${el.href}><span>${el.name}</span></a>`
-              }else if (typeUser == 'продавец'){
+              }else if (typeUser == 'Продавец'){
                 if(el.typeUser == 0 || el.typeUser == 1) block += `<a href=${el.href}><span>${el.name}</span></a>`
-              }else if (typeUser == 'админ'){
+              }else if (typeUser == 'Админ'){
                   block += `<a href=${el.href}><span>${el.name}</span></a>`
               }
             }
@@ -95,7 +95,7 @@ function gethelperMenu(req, res) {
 // Функция для образования профиля, зашедшего пользователя
 function getLoginUserProfil(req, res){
   hbs.registerHelper('getLoginUserProfil', (block) => {
-    if(req.session.user != undefined){
+    if(req.session.user != undefined && req.session.user.status == "login"){
       if( block.data.root.isUser == undefined){
         block.data.root.isUser = true;
       }  

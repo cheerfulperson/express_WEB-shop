@@ -6,15 +6,16 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const os = require("os");
 
 const hbsCreater = require('./moduls/hbsCreater');
-
 const indexRouter = require('./routes/index');
 const registrationRouter = require('./routes/registration');
 const newsRouter = require('./routes/news');
-const forumRouter = require('./routes/forum');
 const contactsRouter = require('./routes/contacts');
 const loginRouter = require('./routes/login');
+const ConfirmEmail = require('./routes/verify')
+
 
 const app = express();
 
@@ -67,35 +68,30 @@ app.use(session({
 
 // Действия на всех страницах(отображение hbs элементов, выполнение проверок, отправка данных и тд);
 app.use('/', (req, res, next) => {
-
-  if(req.session.user != undefined){
+  console.log(req.session.user)
+if(req.session.user != undefined && req.session.user.status == "login"){
     hbsCreater.createHelpMenu(req, res);
   }
     hbsCreater.getIsUser(req, res);
-
   next();
 })
 
-process.on('SIGINT', function () {
-  console.log('Got SIGINT. Press Ctrl-C to exit.');
-});
-
+// Роутеры
 app.use('/', indexRouter);
 app.use('/registration', registrationRouter);
 app.use('/news', newsRouter);
-app.use('/forum', forumRouter);
 app.use('/contacts', contactsRouter);
 app.use('/login', loginRouter);
+app.use('/verify', ConfirmEmail);
 
-// log out from accaunt
+
+// Выход из аккаунта
 app.post('/logout', (req, res) => {
-
  req.session.destroy(()=>{
   res.redirect('/');
  });
- 
+});
 
-})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -1,14 +1,14 @@
 const session = require('express-session');
-// подключение сесси к БД
+// подключение сессии к БД
 const MSSQLStore = require('express-mysql-session')(session);
 
-module.exports = {
+module.exports = { 
     createStore: function() {
         let config = {
             host: "localhost",
             user: "root",
-            database: "users_info",
-            password: "f4a12345Z",
+            database: "firstbd",
+            password: "root",
         }
         return new MSSQLStore(config);
     }

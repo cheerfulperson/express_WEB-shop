@@ -5,7 +5,7 @@ const {
   response,
   routes
 } = require('../app');
-const { route } = require('./registration');
+const route = require('./registration');
 const hbs = require('hbs');
 const app = require('../app');
 

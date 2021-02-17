@@ -24,7 +24,9 @@
             </div>
         </div>
 
-        <label for="psw-repeat"><b>Повторите пароль</b></label>
+        <label for="psw-repeat"><b>Повторите пароль</b>
+            <p id="checkPsw"></p>
+        </label>
         <div class="password">
             <input id="passwordRepeat" type="password" placeholder={{#if isPasswordUnRepeat}} "Пароль не повтораяется"
                 class="placeholder" {{else}} "Повторите пароль" class="" {{/if}} name="passwordRepeat"
@@ -38,10 +40,20 @@
             </div>
         </div>
         <hr>
-        <p>Создавая учетную запись, вы соглашаетесь с нашими <a href="#">Terms & Privacy</a>.</p>
-        <div id="regBtn">
-            <div class="none-registerbtn">Регистрация</div>
-        </div>
+        {{!-- Конча --}}
+        <form action="?" method="POST">
+            <div class="g-recaptcha" data-sitekey="6LfFzloaAAAAAM75FX57Q7SYkRLVhZy9ytr_DHpL"></div>
+            <br />
+            {{#if isNotCorectCapture}}
+            <p style="color: red;">Вы не прошли кончу</p>
+            {{/if}}
+
+                <p><input type="checkbox"> Создавая учетную запись, вы соглашаетесь с нашими <a href="#">Terms & Privacy</a>. </p>
+
+            <div id="regBtn">
+                <div class="none-registerbtn">Регистрация</div>
+            </div>
+        </form>
 
 
         <div class="container-signin">

@@ -2,20 +2,12 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 
 //Db config
-function reconect() {
-    
-}
-const db = mysql.createConnection({
+const db = mysql.createPool({
+    connectionLimit: 5,
     host: "localhost",
     user: "root",
-    database: "users_info",
-    password: "f4a12345Z"
+    database: "firstbd",
+    password: "root",
 });
-db.connect((err) =>{
-    if(err) {
-        reconect();
-        console.error(err);
-    }
-})
-reconect();
+
 module.exports = db;

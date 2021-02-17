@@ -1,11 +1,23 @@
-
 function ready() {
     const password = document.getElementById('password');
     const passwordRepeat = document.getElementById('passwordRepeat');
     const showPasswordBtn = document.querySelectorAll('.password');
-    const registerBtn = document.getElementById('regBtn')
+    const registerBtn = document.getElementById('regBtn');
+    const btnMenu = document.getElementById('getUserMenu');            
+    const helperMenu = document.getElementById('addHelperMenu');
+    const textCheckPsw = document.getElementById('checkPsw');
 
-    if(password != undefined && passwordRepeat != undefined){
+    // Выпадающее меню
+    if(btnMenu != undefined && helperMenu != undefined){
+
+        function getMenu() {
+                if(helperMenu.className != 'dropdown-wrapper') helperMenu.className = 'dropdown-wrapper';
+                else helperMenu.className = 'visible-none';              
+        }
+        btnMenu.addEventListener('click', getMenu);
+    }
+    // Отвечает за пароли
+    if(password != undefined && passwordRepeat != undefined && textCheckPsw != undefined){
         function getReapetsPSW() {
             if(password.value != '' && passwordRepeat.value != ''){
                 if (password.value == passwordRepeat.value && password.value.length >= 6 && passwordRepeat.value.length >= 6) {
@@ -15,9 +27,24 @@ function ready() {
                 }
             }
         }
-
+        function checkInput(e) {
+            if(e.key.charCodeAt() >= 127){
+                // password.value = ''
+                return false
+            }else{
+                return true;
+            }
+        }
         passwordRepeat.addEventListener('keyup', getReapetsPSW);
-        password.addEventListener('keyup', getReapetsPSW);
+        password.addEventListener('keyup', (e) =>{
+            let psw = password.value.split("").filter(word => word.charCodeAt() >= 127).join("")
+            // if(checkInput(e)){
+                getReapetsPSW()
+            // }else{
+            //     password.value = psw;
+            //     console.log(psw)
+            // }       
+        });
 
         getReapetsPSW();
     }

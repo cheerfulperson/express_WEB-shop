@@ -87,13 +87,14 @@ function ready() {
             xhr.open('POST', '/logout');
             xhr.send();
             xhr.onload = () => {
-                document.location.reload();
+                document.location = '/';
             }
         }
     
         btnLogOut.addEventListener('click', deleteSession)
     }
-   
+    
 }
+
 
 document.addEventListener("DOMContentLoaded", ready);

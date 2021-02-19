@@ -1,9 +1,10 @@
 const express = require('express');
-const db = require('../moduls/DB-config');
+const db = require('../modules/DB-config');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-const mailer = require('../moduls/nodemailer');
-
+const mailer = require('../modules/nodemailer');
+const bcrypt = require('bcrypt'); // Хеширование данных
+ 
 const router = express.Router();
 
 /* GET registration listing. */
@@ -18,45 +19,44 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  db.connect();
+  // db.connect();
+  // Капча
+  const capcha = req.body['g-recaptcha-response'];
   if (!req.body) {
     return res.sendStatus(400);
   }
 
   let user = { // ВВеденные данные юзера
     name: req.body.name, // Name юзера
-    email: user.email, // email юзера
-    password: user.password, // password юзера
-    //Зашифрованный personalID
-    personalID: crypto.randomBytes(4).toString('hex'), // удалить
-    type_user: 0,
-    status: 'register',
+    email: req.body.email, // email юзера
+    password: req.body.password, // password юзера захешированный
+    personalID: crypto.randomBytes(4).toString('hex'), //Зашифрованный personalID Удалить
   }
 
   let selectSQL = `SELECT email FROM mytable WHERE (email=?)`;
-  let insertUserSQL = `INSERT INTO mytable(email, password, name, personalID, type_user) VALUES (?,?,?,?,?)`;
   let hbsOptionsObject = {
     isBottonHeader: false, // 
     isEmailsReapet: true, // Если повторяется email
     isVisiableMainBlock: false, // Главный блок был виден (белый)
+    
   };
 
-  //Проверка на схожесть паролей
+  //Проверка на схожесть паролей и на ввод капчи
   if (user.password == req.body.passwordRepeat && user.password.length >= 6) {
-    // Проверка 
+    // Проверка на существование E-mail
+    user.password = bcrypt.hashSync(req.body.password, 7)
     db.query(selectSQL, [user.email], function (error, results) {
       if (error) console.log(error);
+      // Если есть 
       if (results.length === 0) {
-        async function delete_session() {
-         await new Promise((resolve, reject) => setTimeout(resolve, 15*60*1000));
-         await req.session.destroy(() => {
-        })
-         console.log(req.session)
+        async function delete_session() { // Удаление созданной сессии через час
+          await new Promise((resolve, reject) => setTimeout(resolve, 3600 * 1000));
+          await req.session.destroy(() => {})
         }
         //Вызов функции
-        delete_session()
+        
 
-        req.session.user = user;
+        
         // создание Даты
         var date = new Date();
         var mail = {
@@ -65,12 +65,11 @@ router.post('/', function (req, res, next) {
         }
         //Токен
         const token_mail_verification = jwt.sign(mail, 'qwerty', {
-          expiresIn: '900'
+          expiresIn: '1h'
         });
         //Собираем URL подтверждения
         var url = "http://127.0.0.1:3000/" + "verify?personalID=" + token_mail_verification;
         // Отправка сообщения по почте
-
         const message = {
           to: user.email, // list of receivers
           subject: "Подтверждение аккаунта", // Subject line
@@ -78,22 +77,26 @@ router.post('/', function (req, res, next) {
         }
         //Вызов функции mailer
         mailer(message);
-
+        
+        user.status = 'not_verify'
+        req.session.info = user; // Создае
+        delete_session()
 
         if (error) console.log(error);
-        else res.send('Письмо с подтверждением акаунта было отправлено вам на почту'); // Временно
-
+        else res.render("layouts/verify",{isVisiableMainBlock: false}); // Временно
         // Добавить пользователя. С*ка вот здесь он не работает, а теперь работает
-        // db.query(insertUserSQL, [user.email, user.password, user.name, user.personalID, user.type_user], (error, results) => {
-        //   if (error) console.log(error);
-        //   else res.redirect('/login');
-        // });
-
-      } else {
+      }else {
         res.render('layouts/registration', hbsOptionsObject);
       }
     });
-  } else {
+  } else if(capcha =='') {
+    hbsOptionsObject.isEmailsReapet = false;
+    hbsOptionsObject.isNotCorectCapture= true;
+    res.render('layouts/registration', hbsOptionsObject);
+  }
+  
+  
+  else {
     hbsOptionsObject.isEmailsReapet = false;
     res.render('layouts/registration', hbsOptionsObject);
   }

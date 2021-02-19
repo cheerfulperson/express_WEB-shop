@@ -1,16 +1,12 @@
 const express = require('express');
-const db = require('../moduls/DB-config');
-const mailer = require('../moduls/nodemailer')
+const db = require('../modules/DB-config');
 const jwt = require('jsonwebtoken');
-const SendmailTransport = require('nodemailer/lib/sendmail-transport');
 
 const router = express.Router();
-
-
+// Хуй
 router.get('/', function (req, res) {
-    if (req.session.user != undefined) {
-        let selectSQL = `SELECT email FROM mytable WHERE (email=?)`;
-        let insertUserSQL = `INSERT INTO mytable(email, password, name, personalID, type_user) VALUES (?,?,?,?,?)`;
+    if (req.session.info != undefined) {
+        let insertUserSQL = `INSERT INTO mytable(reg_time, email, password, name, personalID) VALUES (?,?,?,?,?)`;
         token = req.query.personalID;
         console.log(token);
         if (token != undefined) {
@@ -20,10 +16,12 @@ router.get('/', function (req, res) {
                     console.log(e)
                 } else {
                     personalID = decoded.personalID;
-                    db.query(insertUserSQL, [req.session.user.email, req.session.user.password, req.session.user.name, req.session.user.personalID, req.session.user.type_user], (error, results) => {
+                    time = new Date() / 1000;
+                    db.query(insertUserSQL, [time, req.session.info.email, req.session.info.password, req.session.info.name, req.session.info.personalID], (error, results) => {
                         if (error) console.log(error);
                         else req.session.destroy(() => {
                             res.redirect('/login');
+                            console.log(results)
                         });
                     });
                 }

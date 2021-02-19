@@ -8,13 +8,31 @@
             {{else}} "Пример: electrons.contact@gmail.com" class="" {{/if}} name="email">
 
         <label for="psw"><b>Пароль</b></label>
-        <input type="password" placeholder="ваш пароль" name="password" value={{password}}>
+                <div class="password">
+
+            <input id="password" type="password" placeholder="Введите пароль" name="password" value={{password}}>
+            <div id="showPasswordBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z" />
+                </svg>
+            </div>
+        </div>
         <hr>
         {{#if isNotCorectUsersData}}
-            <p style="color: red;">Неверный пароль или адрес электронной почты</p>
+        <p style="color: red;">Неверный пароль или адрес электронной почты</p>
         {{/if}}
-        <input type="submit" class="registerbtn" value="Войти">
 
+        {{!-- Конча --}}
+        {{!-- <form action="?" method="POST">
+            <div class="g-recaptcha" data-sitekey="6LfFzloaAAAAAM75FX57Q7SYkRLVhZy9ytr_DHpL"></div>
+            <br />
+        {{#if isNotCorectCapture}} 
+        <p style="color: red;">Вы не прошли кончу</p>
+        {{/if}} --}}
+            <input type="submit" class="registerbtn" value="Войти">
+        {{!-- </form> --}}
         <div class="container-signin">
             <p>Не зарегистрированы? <a href="/registration">Регистрация</a>.</p>
         </div>

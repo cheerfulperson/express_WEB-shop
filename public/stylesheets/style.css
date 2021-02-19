@@ -9,6 +9,7 @@
     transform: rotate(-360deg)
   }
 }
+
 @keyframes loadmenu {
   0% {
     height: 0;
@@ -18,6 +19,7 @@
     height: 360px;
   }
 }
+
 @keyframes fallDown {
   0% {
     transform: translate(0, 0)
@@ -56,9 +58,11 @@ header {
   background: #ffffff80;
   box-shadow: 0 2px 0px rgba(0, 0, 0, .25);
 }
-a{
+
+a {
   text-decoration: none;
 }
+
 header .top_header {
   top: 0;
   width: 90vw;
@@ -128,7 +132,7 @@ header .bottom_header {
 
 }
 
- .fined input {
+.fined input {
   border: none;
   width: 50vw;
   height: 40px;
@@ -161,7 +165,8 @@ header .bottom_header input:focus {
   border-radius: 10px;
   border: 2px solid #d6d6d6;
 }
-.block-of-person-info-after-login{
+
+.block-of-person-info-after-login {
   position: relative;
   display: flex;
   float: right;
@@ -175,20 +180,25 @@ header .bottom_header input:focus {
 
   border: none;
 }
-.button-menu{
+
+.button-menu {
   border: none;
   left: 30px;
   background: none;
   position: absolute;
   cursor: pointer;
 }
-.button-menu:hover svg{
-  fill:#c2c2c2;
+
+.button-menu:hover svg {
+  fill: #c2c2c2;
 }
-.button-menu:active, .button-menu:focus{
+
+.button-menu:active,
+.button-menu:focus {
   outline: none;
 }
-#getUserMenu{
+
+#getUserMenu {
   position: relative;
   display: flex;
   background: none;
@@ -202,7 +212,8 @@ header .bottom_header input:focus {
 
   border: none;
 }
-#getUserMenu summary{
+
+#getUserMenu summary {
   background: url('https://c0.klipartz.com/pngpicture/889/752/gratis-png-emoji-de-sonrisas-tonta-sonrisa.png');
   cursor: pointer;
   width: 30px;
@@ -210,15 +221,17 @@ header .bottom_header input:focus {
   background-size: cover;
   border-radius: 100%;
 }
-.visible-none{
+
+.visible-none {
   display: none;
 }
-.dropdown-wrapper{
+
+.dropdown-wrapper {
   position: absolute;
-  display:block;
+  display: block;
   top: 40px;
   padding: 5px;
-  right: -10px; 
+  right: -10px;
   z-index: 10;
   width: 240px;
   background-color: white;
@@ -227,37 +240,43 @@ header .bottom_header input:focus {
   border-radius: 6px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
   font-family: 'Quicksand', sans-serif;
-  text-align:  left;
-  
+  text-align: left;
+
 }
-.dropdown-wrapper a{
+
+.dropdown-wrapper a {
   display: block;
-    overflow: hidden;
-    text-overflow:clip;
-    white-space: nowrap;
-    height: 32px;
-    line-height: 31px;
-    color: black;
-    cursor: pointer;
-    user-select: none;
-    outline: 0;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+  height: 32px;
+  line-height: 31px;
+  color: black;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
 }
-.dropdown-wrapper a:hover{
+
+.dropdown-wrapper a:hover {
   background: rgb(218, 218, 218);
 }
-.dropdown-wrapper a:active{
-  border-left: 2px solid blue ;
+
+.dropdown-wrapper a:active {
+  border-left: 2px solid blue;
 }
+
 .btn_log-out {
   padding: 4px;
   width: 100%;
   border: none;
   background: none;
 }
+
 .btn_log-out:hover {
 
   background: rgb(218, 218, 218);
 }
+
 .btnflip {
 
   padding-top: 9.5px;
@@ -360,7 +379,8 @@ hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
-.password{
+
+.password {
   background: #f1f1f1;
   width: 100%;
   display: inline-flex;
@@ -376,19 +396,21 @@ hr {
   width: 100%;
 }
 
-.password input:focus .password{
+.password input:focus .password {
   background-color: #ddd;
 }
+
 .password div {
-  border: none; 
+  border: none;
   width: 10%;
   margin-left: 90%;
   margin-top: 15px;
   position: absolute;
   cursor: pointer;
 }
+
 /* Set a style for the submit/register button */
-.none-registerbtn{
+.none-registerbtn {
   background-color: #c7c7c7;
   color: white;
   padding: 16px 20px;
@@ -398,6 +420,7 @@ hr {
   width: 100%;
   opacity: 0.9;
 }
+
 .registerbtn {
   background-color: #4CAF50;
   color: white;
@@ -414,7 +437,7 @@ hr {
 }
 
 .main_block {
-  margin-top:10px;
+  margin-top: 10px;
   width: 90vw;
   height: 100vh;
   background: white;
@@ -428,20 +451,21 @@ hr {
   padding-top: 20px;
 }
 
-.categoris ul li{
+.categoris ul li {
   width: 10%;
-    border-right: 1px solid #e6e6e6;
-    background: #fff;
-    box-sizing: border-box;
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    vertical-align: top;
-    user-select: none;
-   
+  border-right: 1px solid #e6e6e6;
+  background: #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  vertical-align: top;
+  user-select: none;
+
 }
-.categoris ul{
+
+.categoris ul {
   width: 100%;
 
   position: relative;
@@ -453,6 +477,85 @@ hr {
   align-items: center;
   text-align: center;
 }
+
+
+/*======================
+    404 page
+=======================*/
+
+
+
+.page_404 img {
+  width: 100%;
+}
+.four_zero_four_bg {
+
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  background-repeat: no-repeat;
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 120px;
+}
+
+.four_zero_four_bg h2 {
+  font-size: 80px;
+}
+
+.contant_box_404 p {
+  margin: auto;
+  width: 400px
+}
+.btn {
+  z-index: 1;
+  overflow: hidden;
+  background: transparent;
+  position: relative;
+  padding: 8px 50px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+  letter-spacing: 2px;
+  transition: 0.2s ease;
+  font-weight: bold;
+  margin: 5px 0px;
+
+}
+
+.btn.green {
+  border: 4px solid rgb(92, 255, 92);
+  color: var(--blue);
+}
+
+.btn.green:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background: rgb(92, 255, 92);
+  z-index: -1;
+  transition: 0.2s ease;
+
+}
+
+.btn.green:hover {
+  color: white;
+  background: rgb(92, 255, 92);
+  transition: 0.2s ease;
+}
+
+.btn.green:hover:before {
+  width: 100%;
+}
+
+
+
+
+
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
 @media screen and (max-width: 500px) {
   header a {

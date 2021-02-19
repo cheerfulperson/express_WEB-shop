@@ -1,0 +1,37 @@
+<h1>Список пользователей</h1>
+{{!-- Событие onkeyup возникает в момент отпускания нажатой клавиши. --}}
+<input type="text" placeholder="Введите PersonalID или E-mail" class="search-button" id="search-text" onkeyup="tableSearch()">
+
+<table class="user-table" id="user-tab">
+        <td>ID</td>
+        <td>PersonalID</td>
+        <td>Роль</td>
+        <td>Имя пользователя</td>
+        <td>E-mail</td>
+        <td>Дата регистрации</td>
+        <td>Выбрать</td>
+    
+
+    </tr>
+    {{#each memberList}}
+    
+    <tr class="tr-list">
+        
+        <td>{{id}}</td>
+        <td>
+            <a href="member/{{personalID}}">{{personalID}}</a>
+        </td>
+        <td>{{role}}</td>
+        <td>{{name}}</td>
+        <td>{{email}}</td>
+        <td>{{human_date}}</td>
+        <td>
+            <input type="button" value="Удалить">
+            <input type="button" value="Изменить">
+    
+        </td>
+        
+
+    </tr>
+    {{/each}}
+</table>

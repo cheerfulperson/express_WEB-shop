@@ -44,7 +44,7 @@ router.post('/', function (req, res, next) {
   //Проверка на схожесть паролей и на ввод капчи
   if (user.password == req.body.passwordRepeat && user.password.length >= 6) {
     // Проверка на существование E-mail
-    user.password = bcrypt.hashSync(req.body.password, 7)
+    user.password = bcrypt.hashSync(req.body.password, 7);
     db.query(selectSQL, [user.email], function (error, results) {
       if (error) console.log(error);
       // Если есть 
@@ -79,7 +79,7 @@ router.post('/', function (req, res, next) {
         mailer(message);
         
         user.status = 'not_verify'
-        req.session.info = user; // Создае
+        req.session.info = user; // Создает
         delete_session()
 
         if (error) console.log(error);

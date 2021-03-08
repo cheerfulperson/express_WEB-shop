@@ -5,7 +5,6 @@ const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
 
 // routes
 const homeRouter = require('./routes/index');
@@ -45,8 +44,11 @@ app.engine('hbs', expressHbs({
     },
     getInputIsVisible: (isVisible) => {
       return isVisible == undefined ? true : false;
+    },
+    getGender: (sex) =>{
+      if(sex == '') return 'выберите'
+      return sex == "1" ? "муж" : "жен";
     }
-
   }
 }));
 app.set('view engine', 'hbs');
@@ -61,15 +63,13 @@ const store = sessionHandler.createStore();
 // static — за работу со статическим контентом (css, javascript, картинки),
 // errorHandler — за обработку ошибок
 // bodyParser - парсить с сайта информацию
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
-app.use(bodyParser.json());
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
+// app.use(express.multipart());
 app.use(cookieParser('secret key'));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -88,6 +88,7 @@ app.use('/', (req, res, next) => {
     hbsCreater.createHelpMenu(req, res);
   }
   hbsCreater.getIsUser(req, res);
+  hbsCreater.getAvatar(req, res);
   next();
 })
 
@@ -108,7 +109,6 @@ app.post('/logout', (req, res) => {
     if (err) console.error(err)
     res.redirect('/');
   });
-
 });
 
 // catch 404 and forward to error handler

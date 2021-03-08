@@ -24,6 +24,7 @@ router.post('/', function(req, res, next) {
         email: req.body.email,
         password: req.body.password, 
         name: '',
+        profileImage: '',
         personalID: null,
         status: 'login',
     }
@@ -40,6 +41,8 @@ router.post('/', function(req, res, next) {
             user.name = results[0].name;
             user.personalID = results[0].personalID;
             user.role_user = results[0].role;
+            user.profileImage = results[0].photo;
+            user.password = undefined;
             req.session.user = user;
             res.redirect('/');
             }

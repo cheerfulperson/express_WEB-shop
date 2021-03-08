@@ -1,0 +1,103 @@
+<h1>{{getTitle title}}</h1>
+<div class="account__holder">
+    {{> settings-menu}}
+    {{!-- {{> modalWindow-phone}} --}}
+    {{> modalWindow}}
+    <main>
+        <div class="form_section  form_section_type_contacts_data">
+            <h2>E-mail профиля</h2>
+            <div class="form_caption" style="margin-top: 30px; text-align: left;">
+                <label class="form_tag settings_email" for="email">E-mail<span class="form_required"
+                        style="color: red;">*</span>:</label>
+            </div>
+            <div class="form_data">
+                <input class="form_text form_text_type_email" type="email" value="{{email}}" id="name" disabled>
+                <p style="color: gray; text-align: left;">Адрес электронной почты не может быть изменен.</p>
+            </div>
+        </div>
+
+        <div class="form_section  form_section_type_number">
+            <h2>Телефон для подтверждения профиля</h2>
+            <div class="form_caption" style="margin-top: 30px; text-align: left;">
+                <p style="color: gray; text-align: left;">Подтверждение номера телефона необходимо для повышения доверия
+                    между продавцом и покупателем. Вы можете изменить и подтвердить новый номер телефона, если это
+                    потребуется.</p>
+                <label class="form_tag settings_phone" for="phone">Мобильный телефон<span class="form_required"
+                        style="color: red;">*</span>:</label>
+            </div>
+            <div class="form_data">
+                <input class="form_text form_text_type_name" type="text" value="{{phone}}" id="name" disabled>
+            </div>
+            <div class="pretty_button">
+                <button type="button" id="changePhoneNumber">Изменить номер</button>
+            </div>
+
+        </div>
+        <div class="form_section  form_section_type_number">
+            <h2>Сменить пароль</h2>
+            <div class="form_caption" style="margin-top: 30px; text-align: left;">
+                <label class="form_tag settings_phone" for="phone">Старый пароль<span class="form_required"
+                        style="color: red;">*</span>:</label>
+            </div>
+            <div class="form_data">
+                <div class="form_data password">
+                    <input id="oldPassword" class="form_text form_text_type_name" type="password"
+                        placeholder="Введите старый пароль" name="oldPassword" value={{password}}>
+                    <div id="showPasswordBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-unlock" viewBox="0 0 16 16">
+                            <path
+                                d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="form_caption" style="margin-top: 30px; text-align: left;">
+                <label class="form_tag settings_phone" for="phone">Новый пароль<span class="form_required"
+                        style="color: red;">*</span>:</label>
+            </div>
+            <div class="form_data password">
+                <input id="newPassword" class="form_text form_text_type_name" type="password"
+                    placeholder="Введите пароль" name="newPassword" value={{password}}>
+                <div id="showPasswordBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-unlock" viewBox="0 0 16 16">
+                        <path
+                            d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="form_caption" style="margin-top: 30px; text-align: left;">
+                <label class="form_tag settings_phone" for="phone">Повторите новый пароль<span class="form_required"
+                        style="color: red;">*</span>:</label>
+            </div>
+            <div class="form_data password">
+                <input id="newRptPassword" class="form_text form_text_type_name" type="password"
+                    placeholder="Повторите пароль" name="newRptPassword" value={{password}}>
+                <div id="showPasswordBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-unlock" viewBox="0 0 16 16">
+                        <path
+                            d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z" />
+                    </svg>
+                </div>
+            </div>
+            <p class="incorrect message-block" id="incorrectMessage"></p>
+            <p style="color: gray; text-align: left;">Придумайте пароль более 6 символов</p>
+            <div class="pretty_button">
+                <button type="button" id="changePassword">Сменить пароль</button>
+            </div>
+        </div>
+
+        <div class="form_section  form_section_type_contacts_data">
+            <h2 style="color: red;">Удаление аккаунта</h2>
+
+            <p style="color: gray; margin-top: 20px">Как только вы удалите свою учетную запись, пути назад уже не будет. Пожалуйста, будьте уверены.</p>
+                        <hr style="margin-top: 20px;">
+            <div class="pretty_button delete_account" style="border: red;">
+                <button type="button" id="deleteAccount">Удалить аккаунт</button>
+            </div>
+        </div>
+    </main>
+
+</div>

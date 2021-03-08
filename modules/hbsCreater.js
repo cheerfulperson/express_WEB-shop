@@ -118,8 +118,15 @@ function getLoginUserProfil(req, res){
     }
   })
 }
-
+function getProfileImage(req, res) {
+  // console.log(req.session.user)
+  hbs.registerHelper('profileImage', () => {
+    let stackUrl = "https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png";
+    return req.session.user.profileImage != '' ? req.session.user.profileImage : stackUrl;
+  })
+}
 module.exports = {
   createHelpMenu: gethelperMenu,
-  getIsUser: getLoginUserProfil
+  getIsUser: getLoginUserProfil,
+  getAvatar: getProfileImage
 }

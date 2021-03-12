@@ -52,12 +52,13 @@ router.get('/registration-data',  (req, res, next) => {
   })
 })
 
-router.post('/upluad-user-image', (req, res, next) => {
+router.put('/upluad-user-image', (req, res, next) => {
   // Обновляем avatar пользователя
   req.session.user.image = req.body.src;
   res.redirect('/settings');
 })
-router.post('/save-settings', (req, res, next) => {
+//PUT - используется для обновления уже существующей записи(ей);
+router.put('/save-settings', (req, res, next) => {
   let form = req.body;
   let user = req.session.user;
 
@@ -101,7 +102,8 @@ router.post('/save-settings', (req, res, next) => {
   }
 
 })
-router.post('/registration-data/change-account-password', (req, res, next) =>{
+//PUT - используется для обновления уже существующей записи(ей);
+router.put('/registration-data/change-account-password', (req, res, next) =>{
   let user = req.session.user;
   let password = req.body.oldPassword; // пароль
   let newPassword = req.body.newPassword;
@@ -126,10 +128,10 @@ router.post('/registration-data/change-account-password', (req, res, next) =>{
         }        
       });  
     }else{
-
+      res.send({errorMessage: 1})// 1 - пароли не подходят по нормам; 0 - пароли новый и дублируемый новый не совпадают
     }
   }else{
-
+    res.send({errorMessage: 0})
   }
 })
 router.delete('/registration-data/delete-account', (req, res, next) => {

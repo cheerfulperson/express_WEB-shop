@@ -16,7 +16,8 @@ router.get('/', function (req, res) {
                 } else {
                     personalID = decoded.personalID;
                     time = new Date() / 1000;
-                    db.query(insertUserSQL, [time, req.session.info.email, req.session.info.password, req.session.info.name, req.session.info.personalID, photo], (error, results) => {
+                    let userInfo = req.session.info;
+                    db.query(insertUserSQL, [time, userInfo.email, userInfo.password, userInfo.name, userInfo.personalID, photo], (error, results) => {
                         if (error) console.log(error);
                         else req.session.destroy(() => {
                             res.redirect('/login');

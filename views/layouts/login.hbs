@@ -19,20 +19,21 @@
                 </svg>
             </div>
         </div>
-        <hr>
+        {{!-- <hr> --}}
         {{#if isNotCorectUsersData}}
         <p style="color: red;">Неверный пароль или адрес электронной почты</p>
         {{/if}}
 
         {{!-- Конча --}}
-        <form action="?" method="POST">
+        {{!-- <form action="?" method="POST">
             <div class="g-recaptcha" data-sitekey="6LfFzloaAAAAAM75FX57Q7SYkRLVhZy9ytr_DHpL"></div>
             <br />
         {{#if isNotCorectCapture}} 
         <p style="color: red;">Вы не прошли кончу</p>
         {{/if}}
-            <input type="submit" class="registerbtn" value="Войти">
-        </form>
+            
+        </form> --}}
+        <input type="submit" class="registerbtn" value="Войти">
         <div class="container-signin">
             <p>Не зарегистрированы? <a href="/registration">Регистрация</a>.</p>
         </div>

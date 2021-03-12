@@ -73,7 +73,12 @@ function ready() {
     // Регистрационные данные -> меняем пароль
     if(inputOldPassword != undefined && inputNewPassword != undefined){
         function checkPsw(psw, rptPsw){
-            if (psw.value.length < 6) {
+            if(psw.value == ''){
+                psw.style.background = "";
+                rptPsw.style.background = "";
+                incorrectMessage.innerHTML = '';
+            }
+            else if (psw.value.length < 6) {
                 incorrectMessage.innerHTML = 'Пароль должен быть не менее 6 символов';
                 psw.style.background = "#ffaca6";
             }else{
@@ -83,11 +88,13 @@ function ready() {
                     incorrectMessage.innerHTML = '';
                 }else if(psw.value != rptPsw.value){
                     rptPsw.style.background = "#ffaca6";
-                    incorrectMessage.innerHTML = 'Пароли не совпадают'
+                    incorrectMessage.innerHTML = 'Пароли не совпадают!!!'
                 }
             }
+
         }
         function checkOldPsw(oldPsw, newPsw, newRptPsw){
+            
             let password = JSON.stringify({
                 oldPassword: oldPsw.value,
                 newPassword: newPsw.value,
@@ -96,7 +103,7 @@ function ready() {
 
             let xhr = new XMLHttpRequest();
 
-            xhr.open('POST', '/settings/registration-data/change-account-password'); //Установка типа запроса и адрес
+            xhr.open('PUT', '/settings/registration-data/change-account-password'); //Установка типа запроса и адрес
 
             xhr.setRequestHeader('Content-Type', 'application/json'); //Установка формы отправки
 
@@ -104,26 +111,34 @@ function ready() {
 
             xhr.onload = function () { // Когда пришел ответ с сервера, то выполняется это
                 let res = JSON.parse(xhr.responseText);
-                console.log(res.isInvalidPassword)
-                if(res.isInvalidPassword){
-                    oldPsw.style.background = "#ffaca6";
-                    incorrectMessage.innerHTML = `Неправильный пароль`;
-                }else{
-                    newRptPsw.style.background = "";
-                    newPsw.style.background = "";
-                    oldPsw.style.background = "";
-                    newPsw.value = "";
-                    newRptPsw.value = "";
-                    oldPsw.value = "";
-                    incorrectMessage.style.color = "#0bff00";
 
-                    incorrectMessage.innerHTML = `Пароль успешно изменен`;
-                    setTimeout(()=>{
-                        incorrectMessage.style.color = "red";
-                        incorrectMessage.innerHTML = "";
-                    }, 5000)
-                    
+                if(res.isInvalidPassword != undefined){
+                    if(res.isInvalidPassword){
+                        oldPsw.style.background = "#ffaca6";
+                        incorrectMessage.innerHTML = `Неправильный пароль`;
+                    }else{
+                        newRptPsw.style.background = "";
+                        newPsw.style.background = "";
+                        oldPsw.style.background = "";
+                        newPsw.value = "";
+                        newRptPsw.value = "";
+                        oldPsw.value = "";
+                        incorrectMessage.style.color = "#0bff00";   
+                        incorrectMessage.innerHTML = `Пароль успешно изменен`;
+                        setTimeout(()=>{
+                            incorrectMessage.style.color = "red";
+                            incorrectMessage.innerHTML = "";
+                        }, 5000)                    
+                    }
+                }else if(res.errorMessage != undefined){
+                    incorrectMessage.style.color = "red";
+                    if(res.errorMessage == 0){
+                        incorrectMessage.innerHTML = "Пароли не совпадают!!!";
+                    }else if(res.errorMessage == 1){
+                        incorrectMessage.innerHTML = "Длина пароля менее 6 символов";
+                    }
                 }
+                
             }
         }
         inputNewPassword.addEventListener('keyup', ()=>{checkPsw(inputNewPassword, inputNewRptPassword)});
@@ -156,7 +171,7 @@ function ready() {
             });
             let xhr = new XMLHttpRequest();
 
-            xhr.open('POST', '/settings/upluad-user-image');
+            xhr.open('PUT', '/settings/upluad-user-image');
 
             xhr.setRequestHeader('Content-Type', 'application/json');//установка формы заброса
 

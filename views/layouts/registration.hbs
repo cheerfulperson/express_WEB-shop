@@ -47,8 +47,10 @@
             {{#if isNotCorectCapture}}
             <p style="color: red;">Вы не прошли кончу</p>
             {{/if}} --}}
-
-                <p><input type="checkbox"> Создавая учетную запись, вы соглашаетесь с нашими <a href="#">Terms & Privacy</a>. </p>
+                <p style="color: red;">{{errorMessage}}</p>
+                
+                <p><input type="checkbox" name="termsAndPrivacy"> Создавая учетную запись, вы соглашаетесь с нашими <a href="#">Terms & Privacy</a>. </p>
+                <p><input type="checkbox" name="notifications"> Подписаться на все новости и акции, чтобы не пропустить их. </p>
 
             <div id="regBtn">
                 <div class="none-registerbtn">Регистрация</div>

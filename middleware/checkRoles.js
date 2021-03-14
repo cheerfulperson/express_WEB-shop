@@ -1,3 +1,5 @@
+const createError = require('http-errors');
+
 module.exports = (roles)=>{
     return (req,res,next)=>{
         try{
@@ -6,19 +8,14 @@ module.exports = (roles)=>{
           let hasRole = false;
           roles.forEach(element => {
             if(element == user_role){
-               hasRole = true;
-               console.log(element)
-               next()
+               hasRole = true; next();
             }
           });
-          if(!hasRole){
-              return res.render('error')
-          }
-        }
-        else{return res.render('error')}
+          if(!hasRole) next(createError(404));  
+        } else next(createError(404)); //Просто создал обработчик который отправляет ошибку 404
         } catch(e){
             console.log(e)
-            return res.render('error')
+            next(createError(404));
         }
         
     }

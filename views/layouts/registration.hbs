@@ -3,18 +3,24 @@
         <h1>Регистрация</h1>
         <p>Пожалуйста, заполните эту форму, чтобы создать учетную запись.</p>
         <hr>
-
+        {{!-- Имя пользователя --}}
         <label for="name"><b>Имя</b></label>
-        <input type="text" placeholder="Пример: Иван" name="name" value={{name}}>
-
+        <input type="text" id="name" placeholder="Пример: Иван" pattern="[А-Я][а-я]+$" name="name" value={{name}} />
+        <span class="form__error">Это поле должно содержать Имя в формате Егор</span> {{!-- Валидация --}}
+        {{!-- Почта пользователя --}}
         <label for="email"><b>Почта</b></label>
-        <input type="email" placeholder={{#if isEmailsReapet}} "Электронная почта уже занята" class="placeholder"
-            {{else}} "Пример: electrons.contact@gmail.com" class="" {{/if}} name="email">
+        <input type="email" id="email" placeholder={{#if isEmailsReapet}} "Электронная почта уже занята"
+            class="placeholder" {{else}} "Пример: electrons.contact@gmail.com" class="" {{/if}} name="email">
+        <span class="form__error">Это поле должно содержать E-Mail в формате electrons.contact@gmail.com</span>
+        {{!-- Валидация --}}
 
+        {{!-- Пароль пользователя --}}
         <label for="psw"><b>Пароль</b></label>
+        
         <div class="password">
-
-            <input id="password" type="password" placeholder="Введите пароль" name="password" value={{password}}>
+            
+            <input id="password" type="password" pattern="[a-zA-Z^0-9]+$" placeholder="Введите пароль" name="password"
+                value={{password}} />
             <div id="showPasswordBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock"
                     viewBox="0 0 16 16">
@@ -23,10 +29,14 @@
                 </svg>
             </div>
         </div>
+            <span class="form__error">Это поле должно содержать пароль в формате qwerty</span> {{!-- Валидация --}}
 
+        {{!-- Повторите пароль --}}
         <label for="psw-repeat"><b>Повторите пароль</b>
             <p id="checkPsw"></p>
         </label>
+
+
         <div class="password">
             <input id="passwordRepeat" type="password" placeholder={{#if isPasswordUnRepeat}} "Пароль не повтораяется"
                 class="placeholder" {{else}} "Повторите пароль" class="" {{/if}} name="passwordRepeat"
@@ -41,19 +51,22 @@
         </div>
         <hr>
         {{!-- Конча --}}
-        <form action="?" method="POST">
+        {{!-- <form action="?" method="POST">
             <div class="g-recaptcha" data-sitekey="6LfFzloaAAAAAM75FX57Q7SYkRLVhZy9ytr_DHpL"></div>
             <br />
             {{#if isNotCorectCapture}}
             <p style="color: red;">Вы не прошли кончу</p>
-            {{/if}}
+            {{/if}} --}}
+        <p style="color: red;">{{errorMessage}}</p>
 
-                <p><input type="checkbox"> Создавая учетную запись, вы соглашаетесь с нашими <a href="#">Terms & Privacy</a>. </p>
+        <p><input type="checkbox" name="termsAndPrivacy"> Создавая учетную запись, вы соглашаетесь с нашими <a
+                href="#">Terms & Privacy</a>. </p>
+        <p><input type="checkbox" name="notifications"> Подписаться на все новости и акции, чтобы не пропустить их. </p>
 
-            <div id="regBtn">
-                <div class="none-registerbtn">Регистрация</div>
-            </div>
-        </form>
+        <div id="regBtn">
+            <div class="none-registerbtn">Регистрация</div>
+        </div>
+        {{!-- </form> --}}
 
 
         <div class="container-signin">

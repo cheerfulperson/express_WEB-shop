@@ -1,0 +1,157 @@
+<h1>{{getTitle title}}</h1>
+<div class="account__holder">
+    {{> settings-menu}}
+
+    <form method="post" action="/settings/save-settings" name="settings">
+        <div class="form_section form_section_settings_photo">
+
+            <div class="form_inner_block image_inner_block">
+                <h2 style="padding-top: 40px">Загрузите вашу фотографию или выберите</h2>
+
+                <div class="user_profile_image settings_image">
+                    <img class="form_settings__image" src="{{profileImage}}" alt="">
+                </div>
+                <div class="button_delete_user_image">
+                    <button type="button" id="delete_profile_image"><i class="bi bi-trash"></i></button>
+                </div>
+                <ul class="choose_image">
+                    <li class="user_profile_image"><img
+                            src="https://www.meme-arsenal.com/memes/be50e6ba99654b5455027dcc82beb5b3.jpg" alt=""></li>
+                    <li class="user_profile_image"><img 
+                            src="https://www.blast.hk/attachments/64805/" alt=""></li>
+                    <li class="user_profile_image"><img
+                            src="https://www.meme-arsenal.com/memes/0098988ef41b8c0d571016c93bd7dd0d.jpg" alt=""></li>
+                    <li class="user_profile_image"><img
+                            src="https://prikolist.club/wp-content/uploads/2019/07/1-456.jpg"
+                            alt=""></li>
+                    <li class="user_profile_image"><img
+                            src="https://pbs.twimg.com/profile_images/1264968926578061315/r3W8qHXB.jpg"
+                            alt=""></li>                        
+                </ul>
+                <div class="pretty_button">
+                    <button type="button">Загрузить фотографию <i class="bi bi-cloud-arrow-up"></i></button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form_section  form_section_type_mypages">
+            <h2>Персональные данные</h2>
+            <b class="form_account_label form_position">
+                физическое лицо
+            </b>
+            <div class="form_caption"> 
+                <label class="form_tag form_tag_name" for="name">Имя
+                    <span class="form_required"style="color: red;">*</span>
+                </label> 
+            </div>
+            <div class="form_data"> 
+                <input class="form_text form_text_type_name" type="text" name="name" maxlength="100" value="{{profile_name}}" id="name"> 
+            </div>
+            <div class="form_caption"> <label class="form_tag form_tag_name" for="sername">Фамилия</label> </div>
+            <div class="form_data"> <input class="form_text form_text_type_name" type="text" name="sername"
+                    maxlength="100" value="{{sername}}" id="name"> </div>
+              <div class="form_caption"> 
+                <label class="form_tag form_tag_bio" for="name">Расскажите нам о себе</label> 
+            </div>
+            <div class="form_data"> 
+                <textarea class="form_text form_text_type_name" type="text" name="bio" maxlength="300" id="name" style="height: 100px;width:60%">{{bio}}</textarea>
+            </div>
+            <div class="form_caption"> <label class="form_tag form_tag_name" for="birthday">Дата рождения</label> </div>
+            <div class="form_data"> <input class="form_text form_text_type_name" type="date" name="birthday"
+                    maxlength="100" value="{{birthday}}" id="name"> </div>
+            <div class="form_caption"> <label class="form_tag form_tag_name" for="gender">Пол</label> </div>
+            <div class="form_data">
+                <select class="w3-select" name="gender">
+                    <option name="gender" value="0" disabled selected>{{getGender gender}}</option>
+
+                    <option name="gender" value="1">муж</option>
+
+                    <option name="gender" value="2">жен</option>
+
+                </select>
+
+
+            </div>
+        </div>
+        <div class="form_section  form_section_type_contacts_data">
+            <h2>Контакты</h2>
+            <div class="form_caption"> <label class="form_tag form_tag_name" for="name">Телефон 1<span
+                        class="form_required" style="color: red;">*</span></label> </div>
+            <div class="form_data"> <input class="form_text form_text_type_name" type="text" name="phone1"
+                    maxlength="100" value="{{phone1}}" id="name"> </div>
+            <div class="form_caption"> <label class="form_tag form_tag_name" for="name">Телефон 2</label> </div>
+            <div class="form_data"> <input class="form_text form_text_type_name" type="text" name="phone2"
+                    maxlength="100" value="{{phone2}}" id="name"> </div>
+            <div class="form_caption"> <label class="form_tag form_tag_name" for="name">Телефон 3</label> </div>
+            <div class="form_data"> <input class="form_text form_text_type_name" type="text" name="phone3"
+                    maxlength="100" value="{{phone3}}" id="name"> </div>
+            <div class="form_caption"> <label class="form_tag form_tag_name" for="name">Запасной email</label> </div>
+            <div class="form_data"> <input class="form_text form_text_type_name" type="text" name="enatherEmail"
+                    maxlength="100" value="{{seconedEmail}}" id="name"> </div>
+            <div class="pretty_button">
+                <button type="submit">Сохранить <i class="bi bi-cloud-arrow-up"></i></button>
+            </div>
+
+        </div>
+
+        {{!-- <div class="form_section  form_section_type_mypages hidden" id="contact_person_block">
+                <div class="form_caption"> <label class="form_tag form_tag_contact_person"
+                        for="contact_person">Контактное лицо<span class="form_required hidden">*</span></label> </div>
+                <div class="form_data"> <input class="form_text form_text_type_contact_person" type="text"
+                        name="contact_person" maxlength="50" value="" id="contact_person"> </div>
+            </div>
+            <div class="form_section  form_section_type_mypages hidden" id="company_address_block">
+                <div class="form_caption"> <label class="form_tag form_tag_company_address"
+                        for="company_address">Юридический адрес/Адрес регистрации<span
+                            class="form_required">*</span></label> </div>
+                <div class="form_data"> <input class="form_text" type="text" name="company_address" maxlength="50"
+                        value="" id="company_address"> </div>
+            </div>
+            <div class="form_section  form_section_type_mypages hidden" id="vat_number_block">
+                <div class="form_caption"> <label class="form_tag form_tag_vat_number" for="vat_number">УНП<span
+                            class="form_required">*</span></label> </div>
+                <div class="form_data"> <input class="form_text" type="text" name="vat_number" maxlength="9" value=""
+                        id="vat_number"> </div>
+            </div>
+            <div class="form_section  form_section_type_mypages hidden" id="shop_address_block">
+                <div class="form_caption"> <label class="form_tag form_tag_shop_address" for="shop_address">Адрес
+                        торговой точки<span class="form_required hidden">*</span></label> </div>
+                <div class="form_data">
+                    <div id="tooltip-shop-address" class="tooltip__wrapper tooltip_type_hidden">
+                        <div class="tooltip"><i class="tooltip__arrow sprite_common_by_tooltip_arrow"></i>
+                            <p class="tooltip__content"></p>
+                        </div>
+                    </div> <input class="form_text" type="text" name="shop_address" maxlength="50" value=""
+                        id="shop-address">
+                    <p class="form_info">Адрес торговой точки - это адрес, по которому можно приобрести товар. Если у
+                        вас несколько торговых точек, укажите адрес одной из них. Адреса остальных точек можно указать в
+                        тексте.</p>
+                </div>
+            </div>
+            <div class="form_section  form_section_type_mypages hidden" id="web_shop_link_block">
+                <div class="form_caption"> <label class="form_tag form_tag_web_shop_link" for="web_shop_link">Ссылка на
+                        интернет-магазин<span class="form_required hidden">*</span></label> </div>
+                <div class="form_data">
+                    <div id="tooltip-shop-link" class="tooltip__wrapper tooltip_type_hidden">
+                        <div class="tooltip"><i class="tooltip__arrow sprite_common_by_tooltip_arrow"></i>
+                            <p class="tooltip__content"></p>
+                        </div>
+                    </div> <input class="form_text" type="text" name="web_shop_link" maxlength="50" value=""
+                        id="shop-link" placeholder="Например, https://www.example.by">
+                    <p class="form_info">Укажите ссылку на зарегистрированный интернет-магазин при осуществлении
+                        торговли в Интернете. В остальных случаях заполните Адрес торгового пункта.</p>
+                </div>
+            </div>
+            <div class="form_section  form_section_type_mypages hidden" id="company_number_block">
+                <div class="form_caption"> <label class="form_tag form_tag_company_number" for="company_number">Данные о
+                        лицензии<span class="form_required hidden">*</span></label> </div>
+                <div class="form_data"> <input class="form_text" type="text" name="company_number" maxlength="80"
+                        value="" id="company_number">
+                    <p class="form_help">(Только для лицензируемых видов деятельности: укажите № лицензии, ее срок
+                        действия и название органа, выдавшего лицензию)</p>
+                </div>
+            </div> --}}
+
+
+</div>

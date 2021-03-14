@@ -1,38 +1,37 @@
 {{!-- основной файл --}}
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/footer.css' />
-    
-    <script src="/js/index.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfFzloaAAAAAM75FX57Q7SYkRLVhZy9ytr_DHpL"></script>
-    {{!-- Живой поиск --}}
-    <script src="/js/live_search.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    
 
-  </head>
-  {{!-- Вызов общих объектов и переменных, которые действуют на все маршруты --}}
-  {{getLoginUserProfil}} 
-  <body>
-      
-      
-    {{> header}}  
-    {{#if (getMainBlock isVisiableMainBlock)}}  
-    <div class="find_block">
-    {{>find}}
-    </div>
-    <div class="main_block">
-      {{{body}}}
-    </div>
-    {{else}}
-      {{{body}}}
-      
-    {{/if}}
-      {{>footer}}  
-      <script src="/public/js/reCAPTURE.js"></script>
-  </body>
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' /> 
+  <link rel='stylesheet' href='/stylesheets/settings.css' />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  {{!-- Bootstrap --}}
+  <link rel='stylesheet' href='/stylesheets/admin_action.css' /> {{! Админ действия }}
+  
+</head>
+{{!-- Вызов общих объектов и переменных, которые действуют на все маршруты --}}
+{{getLoginUserProfil}}
+
+<body>
+  {{> header}}
+  {{#if (getMainBlock isVisiableMainBlock)}}
+  <div class="main_block">
+    {{{body}}}
+  </div>
+  {{else}}
+  {{{body}}}
+  {{/if}}
+</body>
+<script src="/js/index.js"></script>
+<script src="/js/live_search.js"></script> {{!-- Живой поиск --}}
+<script src="/js/modal_user.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LfFzloaAAAAAM75FX57Q7SYkRLVhZy9ytr_DHpL"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="/js/admin_action.js"></script>
+{{!-- <script src="https://www.google.com/recaptcha/api.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LfFzloaAAAAAM75FX57Q7SYkRLVhZy9ytr_DHpL"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="/public/js/reCAPTURE.js"></script> --}}
 </html>

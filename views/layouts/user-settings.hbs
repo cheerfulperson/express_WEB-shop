@@ -1,0 +1,179 @@
+<h1>{{getTitle title}}</h1>
+<div class="account__holder">
+
+    <div class="account_nav outlined_block ">
+        <nav class="account_nav__list">
+
+            <a class="account_nav__link account_nav__link_type_active account_nav_width"
+                href="/settings/edit">
+                Редактировать профиль
+            </a>
+
+            <a class="account_nav__link  account_nav_width"
+                href="/settings/registration_data">
+                Регистрационные данные
+            </a>
+
+            <a class="account_nav__link account_nav_width account_nav_type_payment"
+                href="/settings/payment_data">
+                <span>Платёжная информация</span>
+            </a>
+
+        </nav>
+    </div>
+
+
+
+
+    <form method="post" action="/settings/edit_settings" name="settings">
+        {{!-- <div class="form_section form_section_settings_photo">
+            <div>
+                <label class="form_tag form_tag_settings_photo">Загрузите вашу фотографию</label>
+            </div>
+            <div class="form_settings__media form_settings__image">
+
+                <img class="form_settings__image" src=""
+                    alt="">
+
+            </div> --}}
+
+            {{!-- <div class="form_settings__control">
+                <label for="upload_avatar"
+                    class="form_settings_avatar">Выбрать фотографию</label>
+                <input type="hidden" name="application" value="account_settings_profile_image">
+            </div>
+
+            <a class="form_settings__delete_profile_image" href="#"></a>
+
+            <a href="#" id="cover_anchor"></a>
+            <input class="form_settings__value" type="hidden" name="profile_image" value="5375459779" id="image">
+            <div class="form_info form_info_profile_image">Для успешной загрузки ваша фотография должна иметь формат JPG
+                или PNG и быть размером не более чем 5 МБ.</div>
+            <div class="form_settings_upload_photo">
+                <span class="form_error form_error_type_separate hidden js-error-logo">Слишком маленький размер
+                    изображения. Минимальный размер - 80 х 80 пикселей.</span>
+            </div>
+
+        </div> --}}
+
+
+        {{!-- <div class="form_section form_section_settings">
+            <input type="hidden" name="company_ad" value="0">
+            <div>
+                <label class="form_tag form_tag_settings form_tag_personal">Персональные данные</label>
+            </div>
+            <b class="form_account_label form_position">
+                Частное лицо
+            </b> --}}
+           
+            <div class="form_section  form_section_type_mypages">
+                <div class="form_caption"> <label class="form_tag form_tag_name" for="name">Имя<span
+                            class="form_required">*</span></label> </div>
+                <div class="form_data"> <input class="form_text form_text_type_name" type="text" name="name"
+                        maxlength="100" value={{profile_name}} id="name"> </div>
+            </div>
+
+            {{!-- <div class="form_section  form_section_type_mypages hidden" id="contact_person_block">
+                <div class="form_caption"> <label class="form_tag form_tag_contact_person"
+                        for="contact_person">Контактное лицо<span class="form_required hidden">*</span></label> </div>
+                <div class="form_data"> <input class="form_text form_text_type_contact_person" type="text"
+                        name="contact_person" maxlength="50" value="" id="contact_person"> </div>
+            </div>
+
+            <div class="form_section  form_section_type_mypages hidden" id="company_address_block">
+                <div class="form_caption"> <label class="form_tag form_tag_company_address"
+                        for="company_address">Юридический адрес/Адрес регистрации<span
+                            class="form_required">*</span></label> </div>
+                <div class="form_data"> <input class="form_text" type="text" name="company_address" maxlength="50"
+                        value="" id="company_address"> </div>
+            </div>
+
+            <div class="form_section  form_section_type_mypages hidden" id="vat_number_block">
+                <div class="form_caption"> <label class="form_tag form_tag_vat_number" for="vat_number">УНП<span
+                            class="form_required">*</span></label> </div>
+                <div class="form_data"> <input class="form_text" type="text" name="vat_number" maxlength="9" value=""
+                        id="vat_number"> </div>
+            </div>
+
+            <div class="form_section  form_section_type_mypages hidden" id="shop_address_block">
+                <div class="form_caption"> <label class="form_tag form_tag_shop_address" for="shop_address">Адрес
+                        торговой точки<span class="form_required hidden">*</span></label> </div>
+                <div class="form_data">
+                    <div id="tooltip-shop-address" class="tooltip__wrapper tooltip_type_hidden">
+                        <div class="tooltip"><i class="tooltip__arrow sprite_common_by_tooltip_arrow"></i>
+                            <p class="tooltip__content"></p>
+                        </div>
+                    </div> <input class="form_text" type="text" name="shop_address" maxlength="50" value=""
+                        id="shop-address">
+                    <p class="form_info">Адрес торговой точки - это адрес, по которому можно приобрести товар. Если у
+                        вас несколько торговых точек, укажите адрес одной из них. Адреса остальных точек можно указать в
+                        тексте.</p>
+                </div>
+            </div>
+
+            <div class="form_section  form_section_type_mypages hidden" id="web_shop_link_block">
+                <div class="form_caption"> <label class="form_tag form_tag_web_shop_link" for="web_shop_link">Ссылка на
+                        интернет-магазин<span class="form_required hidden">*</span></label> </div>
+                <div class="form_data">
+                    <div id="tooltip-shop-link" class="tooltip__wrapper tooltip_type_hidden">
+                        <div class="tooltip"><i class="tooltip__arrow sprite_common_by_tooltip_arrow"></i>
+                            <p class="tooltip__content"></p>
+                        </div>
+                    </div> <input class="form_text" type="text" name="web_shop_link" maxlength="50" value=""
+                        id="shop-link" placeholder="Например, https://www.example.by">
+                    <p class="form_info">Укажите ссылку на зарегистрированный интернет-магазин при осуществлении
+                        торговли в Интернете. В остальных случаях заполните Адрес торгового пункта.</p>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="form_section  form_section_type_mypages hidden" id="company_number_block">
+                <div class="form_caption"> <label class="form_tag form_tag_company_number" for="company_number">Данные о
+                        лицензии<span class="form_required hidden">*</span></label> </div>
+                <div class="form_data"> <input class="form_text" type="text" name="company_number" maxlength="80"
+                        value="" id="company_number">
+                    <p class="form_help">(Только для лицензируемых видов деятельности: укажите № лицензии, ее срок
+                        действия и название органа, выдавшего лицензию)</p>
+                </div>
+            </div> --}}
+
+
+        </div>
+
+        {{!-- <script>
+            var accountSettingsControllerInit = new AccountSettingsController();
+            accountSettingsControllerInit.init('form_text_date', 'form_multiselect');
+            jQuery(".form_busy_hours").find("input").timepicker({
+                "disableTextInput": true,
+                "timeFormat": "H:i",
+                "show2400": true,
+                "noneOption": [{
+                    "label": "-",
+                    "value": ""
+                }]
+            });
+        </script>
+    </form>
+
+
+
+    <script type="text/javascript">
+        var formControllerInit = new FormController();
+        formControllerInit.init('settings');
+
+        var focusOnErrorControllerInit = new FocusOnErrorController();
+        focusOnErrorControllerInit.init('form_error');
+
+        register_events(jsevents.mypages, document);
+        window.tooltip_enable = 1;
+
+        var mparea = 23;
+    </script> --}}
+
+
+
+</div>

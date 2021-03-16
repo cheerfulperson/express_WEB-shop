@@ -1,20 +1,23 @@
 const express = require('express');
-
-const route = require('./registration');
-const hbs = require('hbs');
-const app = require('../app');
+const fs = require('fs');
 
 const router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
 
-  let categoris = ["Телефоны и аксессуары", "Компьютеры", "Электроника", "Одежда", "Для детей", "Автотовары", "Спорт и развлечения", "Красота и здоровье", "Зоотовары", "Бижутерия и часы"];
+  let categories = fs.readFileSync('./categories.json', "utf-8");
+  categories = JSON.parse(categories);
 
   res.render('layouts/home', {
     title: 'GENERAL PAGE',
-    categoris: categoris,
+    categories: categories,
+
   })
+});
+router.post('/categories', function (req, res, next) {
+  let categories = fs.readFileSync('./categories.json', "utf-8");
+  res.send(categories);
 });
 
 

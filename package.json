@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www "
+    "start": "nodemon ./app.js "
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -21,6 +21,7 @@
     "morgan": "~1.9.1",
     "mysql2": "^2.2.5",
     "nodemailer": "^6.4.18",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "socket.io": "^4.0.0"
   }
 }

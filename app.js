@@ -1,12 +1,32 @@
-const createError = require('http-errors');
-const express = require('express');
-const expressHbs = require('express-handlebars');
-const session = require('express-session');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+// Module dependencies.
+const createError = require('http-errors'),
+  expressHbs = require('express-handlebars'),
+  session = require('express-session'),
+  path = require('path'),
+  cookieParser = require('cookie-parser'),
+  logger = require('morgan');
+const express = require('express'),
+  app = express();
+const debug = require('debug')('myapp:server'),
+  http = require('http');
 
-// routes
+// Get port from environment and store in Express.
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+//Create HTTP server.
+var server = http.createServer(app);
+
+//Get socket.io
+const io = require('socket.io')(server);
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+// Routes
 const homeRouter = require('./routes/index');
 const registrationRouter = require('./routes/registration');
 const newsRouter = require('./routes/news');
@@ -14,18 +34,19 @@ const contactsRouter = require('./routes/contacts');
 const loginRouter = require('./routes/login');
 const ConfirmEmail = require('./routes/verify');
 const memberRouter = require('./routes/member');
-const statsRouter = require('./routes/stats');
+const siteSettingsRouter = require('./routes/site-settings');
 const settingsRouter = require('./routes/settings');
+const categoriesRouter = require('./routes/categories');
 
-// modules
+
+// Modules
 const hbsCreater = require('./modules/hbsCreater');
 
-// middleware
+// Middleware
 const checkRoles = require('./middleware/checkRoles');
 const checkAuth = require('./middleware/checkAuthorization');
-const app = express();
 
-// view engine setup
+// View engine setup
 app.engine('hbs', expressHbs({
   extname: 'hbs',
   defaultView: 'default',
@@ -36,8 +57,11 @@ app.engine('hbs', expressHbs({
     getTitle: (title) => {
       return title == undefined ? "No title" : title
     },
-    toUpperCase: (word) => {
-      return word.toUpperCase();
+    getCategoriesName: (arr) => {
+      return arr.name;
+    },
+    getIndividualCategoriesNumber: (arr) => {
+      return arr.identNumber;
     },
     getMainBlock: (isUserlogin) => {
       return isUserlogin == undefined ? true : false;
@@ -45,8 +69,8 @@ app.engine('hbs', expressHbs({
     getInputIsVisible: (isVisible) => {
       return isVisible == undefined ? true : false;
     },
-    getGender: (sex) =>{
-      if(sex == '') return 'выберите'
+    getGender: (sex) => {
+      if (sex == '') return 'выберите'
       return sex == "1" ? "муж" : "жен";
     }
   }
@@ -100,8 +124,9 @@ app.use('/contacts', contactsRouter);
 app.use('/login', checkAuth, loginRouter);
 app.use('/verify', ConfirmEmail);
 app.use('/member', checkRoles(['ADMIN']), memberRouter);
-app.use('/stats', checkRoles(['SELLER', 'ADMIN']), statsRouter);
+app.use('/site-settings', checkRoles(['ADMIN']), siteSettingsRouter);
 app.use('/settings', checkRoles(['USER', 'SELLER', 'ADMIN']), settingsRouter);
+app.use('/categories', categoriesRouter);
 
 // Выход из аккаунта
 app.post('/logout', (req, res) => {
@@ -136,4 +161,74 @@ app.use(function (err, req, res, next) {
   }
 });
 
-module.exports = app;
+
+//************ Create app-server connection */ 
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string' ?
+    'Pipe ' + port :
+    'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string' ?
+    'pipe ' + addr :
+    'port ' + addr.port;
+  console.log("Server created on http://127.0.0.1:" + addr.port);
+  debug('Listening on ' + bind);
+}

@@ -57,8 +57,9 @@ router.put('/upluad-user-image', (req, res, next) => {
   req.session.user.image = req.body.src;
   res.redirect('/settings');
 })
-//PUT - используется для обновления уже существующей записи(ей);
-router.put('/save-settings', (req, res, next) => {
+
+
+router.post('/save-settings', (req, res, next) => {
   let form = req.body;
   let user = req.session.user;
 

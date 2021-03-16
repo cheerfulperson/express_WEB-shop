@@ -60,8 +60,8 @@ function gethelperMenu(req, res) {
               name:'Мои сообщения',
               typeUser: 0
             },{
-              href:'/stats',
-              name:'Статистика сайта',
+              href:'/site-settings',
+              name:'Настройки сайта',
               typeUser: 2
             }
           ],[

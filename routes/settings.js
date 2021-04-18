@@ -42,7 +42,7 @@ router.get('/', (req, res, next) => {
   })
 });
 
-router.get('/registration-data',  (req, res, next) => {
+router.get('/registration-data', (req, res, next) => {
   let user = req.session.user;
   res.render('layouts/settings-register', {
     title: "Регистрационный данные",
@@ -54,7 +54,7 @@ router.get('/registration-data',  (req, res, next) => {
 
 router.put('/upluad-user-image', (req, res, next) => {
   // Обновляем avatar пользователя
-  req.session.user.image = req.body.src;
+  if (req.body.src) req.session.user.image = req.body.src;
   res.redirect('/settings');
 })
 
@@ -75,8 +75,10 @@ router.post('/save-settings', (req, res, next) => {
 
     // Если поменял что-то, то это в сесси меняется
     user.name = form.name;
-    user.profileImage = user.image;
-    delete user.image;
+    if (user.image) {
+      user.profileImage = user.image;
+      delete user.image;
+    }
     objSettings.sername = form.sername;
     objSettings.bio = form.bio;
     objSettings.birthday = form.birthday;
@@ -104,7 +106,7 @@ router.post('/save-settings', (req, res, next) => {
 
 })
 //PUT - используется для обновления уже существующей записи(ей);
-router.put('/registration-data/change-account-password', (req, res, next) =>{
+router.put('/registration-data/change-account-password', (req, res, next) => {
   let user = req.session.user;
   let password = req.body.oldPassword; // пароль
   let newPassword = req.body.newPassword;
@@ -112,27 +114,37 @@ router.put('/registration-data/change-account-password', (req, res, next) =>{
 
   let update = `UPDATE mytable SET password=? WHERE email=?`;
 
-  if(newPassword == newRptPassword){
+  if (newPassword == newRptPassword) {
     if (newPassword.length >= 6) {
       newPassword = bcrypt.hashSync(newPassword, 7);
 
-        // Ищем такого пользователя
+      // Ищем такого пользователя
       db.query(`SELECT * FROM mytable WHERE email=?`, [user.email], function (error, results) {
         // Находим
         const validPassword = bcrypt.compareSync(password, results[0].password) // Расшифрока пароля. bool 
-        if (validPassword){ // Тут еще будет проверка на новый пароль
-          db.query(update, [newPassword, user.email], (err, results) => {if(err)console.error(err)}); // Меняем пароль
-          
-          res.send({isInvalidPassword: false}); //Отправка на клиентский js cм. index.js
-        }else{     
-          res.send({isInvalidPassword: true}); //Отправка на клиентский js
-        }        
-      });  
-    }else{
-      res.send({errorMessage: 1})// 1 - пароли не подходят по нормам; 0 - пароли новый и дублируемый новый не совпадают
+        if (validPassword) { // Тут еще будет проверка на новый пароль
+          db.query(update, [newPassword, user.email], (err, results) => {
+            if (err) console.error(err)
+          }); // Меняем пароль
+
+          res.send({
+            isInvalidPassword: false
+          }); //Отправка на клиентский js cм. index.js
+        } else {
+          res.send({
+            isInvalidPassword: true
+          }); //Отправка на клиентский js
+        }
+      });
+    } else {
+      res.send({
+        errorMessage: 1
+      }) // 1 - пароли не подходят по нормам; 0 - пароли новый и дублируемый новый не совпадают
     }
-  }else{
-    res.send({errorMessage: 0})
+  } else {
+    res.send({
+      errorMessage: 0
+    })
   }
 })
 router.delete('/registration-data/delete-account', (req, res, next) => {
@@ -141,25 +153,29 @@ router.delete('/registration-data/delete-account', (req, res, next) => {
 
   // Ищем такого пользователя
   db.query(`SELECT * FROM mytable WHERE email=?`, [user.email], function (error, results) {
-          // Находим
-          const validPassword = bcrypt.compareSync(password, results[0].password) // Расшифрока пароля. bool
-  
-          if (validPassword ){ 
-          // Удаляет аккаунт
-          db.query(`DELETE FROM mytable WHERE email=?`, [user.email], (error, results) => {
-            if(error) console.error(error);
-            req.session.destroy((err) => { //
-              if (err) console.error(err);
-              res.send({isInvalidPassword: false}); //Отправка на клиентский js cм. modal_user.js
-            });
-          })
+    // Находим
+    const validPassword = bcrypt.compareSync(password, results[0].password) // Расшифрока пароля. bool
+
+    if (validPassword) {
+      // Удаляет аккаунт
+      db.query(`DELETE FROM mytable WHERE email=?`, [user.email], (error, results) => {
+        if (error) console.error(error);
+        req.session.destroy((err) => { //
+          if (err) console.error(err);
+          res.send({
+            isInvalidPassword: false
+          }); //Отправка на клиентский js cм. modal_user.js
+        });
+      })
 
 
-          }else{     
-              res.send({isInvalidPassword: true}); //Отправка на клиентский js
-          }  
-       
-    });  
+    } else {
+      res.send({
+        isInvalidPassword: true
+      }); //Отправка на клиентский js
+    }
+
+  });
 
 
 })

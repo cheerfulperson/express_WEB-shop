@@ -1,6 +1,7 @@
 // Module dependencies.
 const createError = require('http-errors'),
   expressHbs = require('express-handlebars'),
+  hbs = require('handlebars'),
   session = require('express-session'),
   path = require('path'),
   cookieParser = require('cookie-parser'),
@@ -17,14 +18,15 @@ app.set('port', port);
 //Create HTTP server.
 var server = http.createServer(app);
 
+
 //Get socket.io
-const io = require('socket.io')(server);
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-});
+// const io = require('socket.io')(server);
+// io.on('connection', (socket) => {
+//   console.log('a user connected');
+//   socket.on('disconnect', () => {
+//     console.log('user disconnected');
+//   });
+// });
 
 // Routes
 const homeRouter = require('./routes/index');
@@ -37,7 +39,6 @@ const memberRouter = require('./routes/member');
 const siteSettingsRouter = require('./routes/site-settings');
 const settingsRouter = require('./routes/settings');
 const categoriesRouter = require('./routes/categories');
-
 
 // Modules
 const hbsCreater = require('./modules/hbsCreater');
@@ -57,21 +58,28 @@ app.engine('hbs', expressHbs({
     getTitle: (title) => {
       return title == undefined ? "No title" : title
     },
+    isObject: (el) => {
+      return typeof el == 'object' ? true : false;
+    },
     getCategoriesName: (arr) => {
       return arr.name;
     },
     getIndividualCategoriesNumber: (arr) => {
       return arr.identNumber;
     },
-    getMainBlock: (isUserlogin) => {
-      return isUserlogin == undefined ? true : false;
-    },
-    getInputIsVisible: (isVisible) => {
-      return isVisible == undefined ? true : false;
+    getUndefined: (data) => {
+      return data == undefined ? true : false;
     },
     getGender: (sex) => {
       if (sex == '') return 'выберите'
       return sex == "1" ? "муж" : "жен";
+    },
+    creatPageMenu: (amount) => {
+      let scrollMenu = '';
+      for (let i = 1; i <= Math.ceil(amount / 30); i++) {
+        scrollMenu += `<button id='${i}'>${i}</button>`;
+      }
+      return new hbs.SafeString(scrollMenu);
     }
   }
 }));
@@ -108,6 +116,11 @@ app.use(session({
 
 // Действия на всех страницах(отображение hbs элементов, выполнение проверок, отправка данных и тд);
 app.use('/', (req, res, next) => {
+  // hbs.registerHelper('clear', (block) => { // Очищает все значения, передаваемые hbs
+  //   let helpers = block.data.root;
+  //   block.data.root.isVisibleSubMenu = false;
+  //   console.log(helpers)
+  // })
   if (req.session.user != undefined && req.session.user.status == "login") {
     hbsCreater.createHelpMenu(req, res);
   }
@@ -123,10 +136,11 @@ app.use('/news', newsRouter);
 app.use('/contacts', contactsRouter);
 app.use('/login', checkAuth, loginRouter);
 app.use('/verify', ConfirmEmail);
+app.use('/categories', categoriesRouter);
 app.use('/member', checkRoles(['ADMIN']), memberRouter);
 app.use('/site-settings', checkRoles(['ADMIN']), siteSettingsRouter);
 app.use('/settings', checkRoles(['USER', 'SELLER', 'ADMIN']), settingsRouter);
-app.use('/categories', categoriesRouter);
+
 
 // Выход из аккаунта
 app.post('/logout', (req, res) => {
@@ -167,8 +181,7 @@ app.use(function (err, req, res, next) {
 /**
  * Listen on provided port, on all network interfaces.
  */
-
-server.listen(port);
+server.listen(port); // /*, '192.168.100.14'*/ Если хочешь, то локально по сети работает просто раскомментриуй
 server.on('error', onError);
 server.on('listening', onListening);
 

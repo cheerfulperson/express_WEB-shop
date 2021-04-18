@@ -1,0 +1,27 @@
+
+<span class="nav_bar_submenu" onclick="openNav()">
+    <div></div>
+    <div></div>
+    <div></div>
+</span>
+
+
+{{!-- <span style="font-size:30px;cursor:pointer">☰ open</span> --}}
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="/site-settings">Статистика</a>
+    <a href="/site-settings/categories">Категории</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+</div>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.querySelector('.logo').style.marginLeft = "150px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.querySelector('.logo').style.marginLeft = "0";
+    }
+</script>

@@ -7,36 +7,43 @@
   <link rel="shortcut icon" href="https://proxy.mc-market.org/f55a14af93f66030c17c4a6cf19d1dfb1de51bb5?url=https%3A%2F%2Fi.gyazo.com%2F12ea464af0e608db5aa5f487285d8416.png" type="image/x-icon">
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link rel='stylesheet' href='/stylesheets/settings.css' />
+  <link rel="stylesheet" href="/stylesheets/submenu.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">{{!-- Bootstrap --}}
+  <script src="/js/live_search.js" defer></script> {{!-- Живой поиск --}}
+  <script src="/js/modal_user.js" defer></script>
+  <script src="/js/index.js" defer></script>  
 </head>
-{{!-- Вызов общих объектов и переменных, которые действуют на все маршруты --}}
-{{getLoginUserProfil}}
-
+{{!-- Вызвывает вспомогательный хелперов, общих объектов и переменных, которые действуют на все маршруты --}}
+  {{!-- {{clear}} --}}
+  {{getLoginUserProfil}} 
+  {{!-- {{siteSettingsHelpers}}  --}}
+  {{#if isVisibleCategories}}{{categories}}{{/if}}
+{{!-- /Вызов  --}}
 <body>
-
-
   {{> header}}
-  {{#if (getMainBlock isVisiableMainBlock)}}
+  {{#if (getUndefined isVisiableMainBlock)}}
+  
   <div class="main_block">
-    {{{body}}}
+    {{>menu-catalog }}
+    {{#if isAdvertisingPosterVisible}} {{> find}} {{/if}}
+    <div class="body-block-of-elements">
+      {{{body}}}
+    </div>
   </div>
   {{else}}
   {{{body}}}
-
   {{/if}}
 
 
 
 </body>
-<script src="/js/live_search.js"></script> {{!-- Живой поиск --}}
-<script src="/js/modal_user.js"></script>
-<script src="/js/index.js"></script>
+
 {{!-- <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="https://www.google.com/recaptcha/api.js?render=6LfFzloaAAAAAM75FX57Q7SYkRLVhZy9ytr_DHpL"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="/public/js/reCAPTURE.js"></script> --}}
-<script src="/socket.io/socket.io.js"></script>
+{{!-- <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io();
-</script>
+</script> --}}
 </html>

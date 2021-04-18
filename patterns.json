@@ -1,0 +1,109 @@
+{
+    "individualNumber": "2121341001",
+    "type": "Смартфон",
+    "brand": "huawei",
+    "prodName": "PPA-LX1",
+    "rating": 4.9,
+    "price": 400,
+    "photos": ["https://www.ixbt.com/img/r30/00/02/16/70/IMG3249.jpg", "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEBISExASFRUQFRIREA8WFRUVEhASFRIWGBYRFRYYHSggGBsmHRYVIjIhJSkrLy4uGR8zODMtOCguLisBCgoKDg0OGxAQGy0lICUrLS0tLzIrLS0tLS0tLS0tLS0tLS0tLSsvLSsrLS0tLzUtLS8tLS8tLTAtLS0tLS0tLf/AABEIAMcA/QMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABgECAwQFBwj/xABFEAABAwICBQYLBgMIAwAAAAABAAIDBBEhMQUGEkFRBxMiQmFxFCMyUlNigZGhsdEkQ0SCksGT4fAzY3KiwsPS8RYXg//EABoBAQACAwEAAAAAAAAAAAAAAAABBQIDBAb/xAA1EQACAQIDBQYEBgIDAAAAAAAAAQIDEQQhMRJBUWHRBRNxkaHwFDKB4RUiUrHS8cHiQkOS/9oADAMBAAIRAxEAPwD3FERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREARFw9Y9M+DtDIwHTS3EbTk0b5X+qOG84cSIbSV3oEr5I29LaZpqRm3PMyNox6RAPuUIreWfRTCQwyyW3hjg09xtio7pzUplbJztRV1T3HG149kG2JALP6yGGC0mcmFCM5ak/njHyYqt9s4ZcfL7nX8FV5eZIX8uVCMqaod3bP72VlVy3QRmzqCqac9l/NtPtBdcLkRcm2jwQfH3BuDztiCMjgAs55PNHE3cyVxOJJmkJJOZJuo/GcPwl5LqPgqvL39DbqOWxrQCdHzt2hdpdsgOHEdLELA3luLjZtFnld4+qudqHo9xBdFI6wAG1PMbAZDy8lki1E0YPw3vlmPzei7Zofpl5L+RPwVTivXoUl5X6gAnwOEW4y4/BaX/ueqOVJCPzO+i67NTtHD8JH7S4/MrYZqrQD8JF+m/zU/jFHdGXp1HwU+K9SPDlfrD9zEO4/VqtdysV5ybEO8X+ilLNXKEZUkH8Nv0WzDoajbf7JAcMPFtwPHLFF2tTf/F+Y+DfH0/ohLuVLSR60I/+f81idymaSP3sf6Lfup+zRlMBhTQ347DMPZZaenaqCmhGzBFzjrtjGyOk619p3BrRie7iVlDtNTajGGb0V/8AUiWF2Vdv35kZ0fyqVsN5J2slibbbaAGvsSB0HDrY5G98sL3HsGi9IRVMMc8TtqOZrZI3Yi7XC+IOR7Ny+XtL1Rq5uaYbsY4ue/LnJL9J5/r5Be/ck9MY9E0wsQHGZ7AfRvne5rh2OBDvzK0OQmCIigBERAEREAREQBERAEREAREQBEWGpqGRMc97g1rAXOccgBmUBqaa0oyliMj8eqxg8qR5yY3tPwAJ3KExh73vmlN5ZfK4MaPJibwaPqczdX1FW+ql594Ia24poj1GH7xw893wFhuub15rtXH7b7im8lq+L4eC9XyWdpg8Psrblru6/UIqKqpDuKhVQKqzILgrgrArws0QVCyBWBXBbUYMvCBAqhbEYlk8zY2ue8hrWAuc45ADMryLXjWF8jy1tw+UbLW74Ib4DscTie3DqqS6+axtYHNBuyI2I9NOMm9rWnP1v8JXn+hKKaonaQ3nJ6h2zE05FzsvYACexrXE5Y3/AGdhdiPey1enJdXr4Fbiau09laL9yQ8n2p5rZhAQREwNkrZBhZh8mnadzn2OWQBOdr/REMbWtDWgBrQGtaBYNAFgANwXH1R1fj0dStgZ0neXPLaxmmcBtSH3AAbgANy7is2cwREUAIiIAiIgCIiAIiIAiIgCIiAKBac0j4ZJsNP2eF2e6olac+1jTlxOPArd1r0qXuNJE62H2qUZsYRhE0+c4Z8B34cyNgaA0CwAsBwCp+1Mf3Ue6p/M9XwXV7uGvA7cJh9t7ctF6lVVUReXLYKqzU4xLj5Lc8rm+QF95+GJWZscjzzmzgcjs3HDotHBb4UXJJrfy3cfPJcXvyNbnb36GoCqhbL5XEBtzYOHlEeVlkch2e/cskTS0kPu0YnaBDbngMLuF9wWcaF3a7txtkvfHQhzyNQLJay2pC42dcXeAXSXwaMgwHPIY7z88U8u1YAkhowJzONz8Tks5UlHf4ZcftruTyu9VClf373lgVQrQrwsUGXhcTWjS/MR7DXWkeCdr0UYwdJ37m9p7CujpCtZBG6R17NsA0eU9xNmsb2k2C8c1r0rJUSmIG75CDO4G4GHRib6oGHbiesVadnYXvZ7UvlXq+HXy3nJia2wrLU5tVUeFS3yii6Mbb4W4k9tib8Lniva+SfVTmI/DJW2knbaBhFjFCbHaI3PfYHsaGjioZyYaoCrnLpG/Z6Vw5zhPKNlwh7W5Od2Brd5XvK9E2VoREUAIiIAiIgCIiAIiIAiIgCIiALgazaaMDRHFYzy3EYzEbd8ruwbhvPcbbumtJspYjI7Ek7McY8qSQ5MH9YAFQmJr3OdLKdqWXF53NG6JvBo/q+a4cdjFhqd9ZPRf58F9jfh6Lqytu3laWnEbbXJJJc5xxc9xNy8neSVlRF4+UnJuUndvUu0klZBERYkmWzOJ9wVpDLjO2/AX9isVVltJ7l5EW5mUbHF3uCuGx63wWBXBZprgvIhrmXG18P5q8LGFkCyWpBeFeFjaoxrnpprGOhDrAN2ql3BhGEIPnO38G9rgumhRlWmoR/rmaKs1CO0yPa76y7XSYbgXbSt84kWdUHsIuB6uPWCj2q+g5qmdkMf9tOTd5FxG213yu7ADfdcloGLlqRONRI6okB2G4MZbd1WNA3ngF7vya6qGhpzLKPtFT0pB6BhcXNgHde7uLuIAXrqVONKChHRFPKTk22STQeiYqOnjp4W2ZELDznOOLnuO9xJJJ4ldFEWRAREQBERAEREAREQBERAEREAWvV1LImOke4NawFznHcP37lsKA6Z0l4bJstP2eE4cKiQdftYN3HPHC2mvXhQpupPRevBLm/vojOnTlUlsxME1S+pl8IkBAALaeI/dsPWPrOwJ9mdgr0VF4zEYideo6k/6XD3rq8y9pUlTjsxKqiItBsAVVRVQBVVEQFVUK1XBZogqFlasQSadsbHPe4NawFznHJrQLklZowZrab0oKaK4AL39GJhyLrX2ncGtAJJ4DuXkWlqh1TNzLXFwDi6WQ5ySE9Jx+m6wGTQurrbp18jycRJKNiJm+CC+/g8kAntsOpjdqfq0+qmZSsJaXgSVUw+4gviAfPdkPfkCvW4DCfD07y+Z68uXXmU2Ird5LLRaEs5K9V21Ejat7fEUriKYbpqhps6Yje1hwHrX81exLWoKOOCJkUbQxkTWsYwZNa0WAWyu00BERAEREAREQBERAEREAREQBEUd1q02adoijIM0o6P90zIyu+Nu0b7FAc7W7TG2TSxusPxUg3NP3I7Tv7MMcbcRlZG0ADADACxWuIw1tgScy5xxLnHNxO8rAWKKuDo10u9V7cy3wsVSjpds6Hh8fE+4qoro+K52ysUrQtP4Rg/0er6naprevU64rGcVeKlqjMjy3I+xbVDWh2G/gsZdk4VK+wvN9TphCnPQ7nhDVUThc9xTbWH4ZhP0er6k9wjoc8E54LnGZY9tzjZYy7NwcU24JJa5vqSsOmdTwgd6ytK1aSGwW2CvLV6lOc26cbR3a+bu3r6aHPUUU7IvaoXrjp1vSaD4qB3Tt99OPJjHFrDYni63muXZ1k0qYmCON1pZQbPw8TGMHTG+F8bNBzcRuBXmjj4VKA3CGHycSRYZvJOe/HfcnMlW/ZGD2n389F8vjx+m7nfhnU42t/1r69CujYHyP55zS+SVwZDEMTJI42Yxt/Yvf8AUfVsaPptlxDppjztVJntSEeQ31GjAe05kqKclerQdbSErLCxbQRnqxkWdUEcXYgerc9ZeoL0LK4IiKAEREAREQBERAEREAREQBEWrW1TIY3SPNmsF3H9gN5JwA3koDV05pZlLEXuxcejHHvkech3cT/0oCXPc50kjtqSQ3e7hwaOAGA9iyVtc+plM78MLQx+jj/5HMn+QGrNO1uZ9i2RSWbLDC4d/NbN6FzyrCLZ4LVkrHHLD5rA7i455bye4Lmq46nDNdEXNPAzfzO3q/f1NqSdo6w9lysDpWnrpDTOfky/End7rAd11mfoyQC/iz6uI+K4qna2w7Oy/fyvf0N/w9GOUpO/06M59Qw2vgRxGIWtBcSNI4ge9bTXAbXAtBI7TbBV0bDd22fJbl6zuCtcPX7yntsxdPYnsrPQ6sitVNq+KqsJSjCN5OyW86UrFtlt0kCxwx3K32NsF5XtLtJ4h93Tyhv5/bel5mmtU2VZFwWDSNcyCN0jr2bYBo8p7ibNY0b3EkAd6zLz/WbTweecGLGEtpG7pHEEOqD2WuG+rc9dq5sDhHiauzuWb8Or0RWYisqUL793vkcrT1dJI9zLgyzkGdzTcNbbowsPmgG3bdx66kGpOq3hs4gseYg2X1rx197aYHi62PAXyJC4GhdHTPexrG7dTVO2YWnicXSOO5oFyTwBX0FqtoGOgpWU8Zva7pJD5UsrvLkd3nduAA3L2aioxUUskULbbuzqxsDQAAAAAABgABkANyyIiAIiIAiIgCIiAIiIAiIgCIiAtJtid2ZXnmsOmPCpMD4iI9AemeMC8+rw/nYdHWvSxmeaSEki4bUObmSThA3iTv8Ad5wWaHVpkbWc4x0j3nZEYLhFH0Sem5oJthba4kYb1KyzN9GME9qpp+5DZ6ouwHvWoW8VPBT0V3N8Anu0OdYMk6Qa6w2elfHAi4F8d4IFPBqA/g6n2xzjHaAAxNsbg93cbctWnVqPNouqPamFpqyjLyX8iCyO2APOOQ3NHnFWOuBfEuILid5zsPgpxJQaNN3upagXJAJbUXIawEu2QbhoBGNu6+KHR+jTs+LqAbOthLcBhNweBBwx+WK5qWEqKup1LOK0Weu52aRv/GcNa1peS/kcCCthDBsvaABlv9y1KvSwN2x3JPAXt3D62UppdC6MmfsNjmLjc9KN4wF8S5zLWuCLk5hdB+ptJY4yADE9MAD4LXDsegpuUnKW/Nr1srs5YY7DXzb/APN/8nmjYvOyz2AcSfWI/b4Lba69uzAAZAKXaI1d0fVNL4n1Ba1xZtGzWut1mFzOk05gi4XE0vRsp53xxu2g23SwuCRi023hdmOxLwkM4aZWeVvpr7zZY4fF4epJxp3ctXdGoxhWRjVYCStunjXk8TjquIf534LRL6dbs3Tlsq7M0DLBZEXP03pLweO4AdI87ELCbBz7E3cdzWgFxPAFc8ISnJQirt5LxOCc0rykcvWvSYs6AOs0N2qp+WzGQbQg7nPsb2xDQd5aoLG7n5HTydGKMdEHANaMhwB/6yAV+kZHTScw1xd0i6eQ5yyk9In3DDdZo6oU25OdWBWTh7m/ZaNwvcdGpqRiG9rG4E8TsjHFe2weEjhqSgtd74v7aLrc89XrOrPaf08OvEl3JhqwYYzWzstPUNAjYRjT0+bWWOTnYOd+Ubjefoi6DUEREAREQBERAEREAREQBERAFG9bNOGBohiPjpRgfRM3yH42/e1jt60afioad00hGAOw09Z1t/YN/uzIB8fZrzQPc6SSpcZJDtSOMUue5os3IYe7gAFEnZX1NtGmpzSk0lzdiR6I58ybNIxznx325L7LGuIxL3uvieAuVm0drbWyGRrjsmJxY7yHNLgSCAdndb4hRWn1u0czaDNIzsDyXOY3wiNhJzODAtiDWjRrWhrKmJoGQs4fMLZi62F7lxpRk5O35ntK3HLa2XfS1rLXabzdzSVPbzlDZWi/K39W8+ZMDrHVj70foZ/xVW6zVfpB+hn0UT/8moD+Mh/VZXDWCi3VlP8AxGj5lU7lU5+p2qGGe6HkuhIarW2uZiHMI/wBa7Ne63+7P5PoVxjpqjdlV0/8Vn1VIq6lFyJoCTvE0d/mtE3XbvGbXmb40cJbOEfQkA17qxm2L2tcP9SzN16qCLGOA/lfj/nURmAebieI8BtjAewq1tPJucw9zwuaVXFrST9DYsHg2vliS6p1tqZW2BawHA7AIPvJJHssuOFoRMlHUv3EfVdGBjjm0jsVdie/m9qpd2Mo0KdFWppLwM8Ed1ugWWKKOw+a6LKmNrbCO5tvDTc8Sc7fRc1NReskjhrTbeSuaE8zY2ue9wa1gLnOOTWgXJK861h0w9zjJYiSUbEEZzghve54PJAce3ZHUN+xrVpdri5t/FQG8mXjp2kFsY4hhsTxdsjJrlEqS7i6olBJJAYwXJc44NjaMzuHE95XpuxsFsR7+azenJdX+3iUuOxG1Lu46LXm/t+/gdPVvQcs0sdLD/az4ySZ8xALbcp94AG8kDevoXQ2jIqSCOnhbssiaGtG88XOO9xNyTvJKj3J5qsaGAySgGpqbPnPox1IGng25vxJO6ymCuWV4REQBERAEREAREQBERAEREAREQHzvy66Vmm0g6ma47FM2MGLiXsEm12+UB+ULzXwGb0Tj3C/yXrPLvqxLHUt0ixpdFK1kdQQCeakZg1zuDXN2RfiO0LzaCoGHT+KkHONHN6GX9DlQ0svopP0O+i6gm9b4q8Tet8VNgcXmX+jf+kq10bhm1w9hUgE7vOV4qXjr2AzNwAEIIySrcOxSptW49cH8zT+6v59/H+vYmYyInYdiph2KW88Tm1p72g/NNoeij/Q1LDIiWHYsjHkZOI7iR8lKbM9DF/Db+4Vz4osPs8WPqj6JmLLgRnw2UZTSfrd9V29FtqXdOWqniibYuPOvD3D1QT0b+ccOFzglQWsxZExp4gLhVlS956TiQMm5NHcBgFhKnB6peRkpNaMlYqBVSNa0bMUfkjH9RvjxzxxJOJK9O5K9WhUSiukb4mAltEw5SSDB1QRvANw3tudwK885MtV59Jy823aZTsINVOMLN9Ew+e74DHgD9M0lMyGNkcbQxkbQxjGizWtaLBoHCyybMbGwiIoJCIiAIiIAiIgCIiAIiIAiIgCIiAxTRte0tc0Oa4FrmkAhwOBBBzCgWleR7Q87i4QyQkm5EMha2/Y1wcG9wAXoSIDyqTkI0YcqitH54j/ALa15eQWhPk1lUO/mnf6QvXUQHjknIJB1dITDvjafkQtSTkCJvbSptwNN+/PL25EB4hHyGTsFm19O4evRtJ95cT8VhqeRSvNtmspBa/kwujv37IxXuqID5+l5FdLjyaqkd3ulH+2VrjkY0u0eVSO7RPML+9i+iUQHzm7kk003FrIid32kke5wWtLycawiw8EDrZET09vi8FfSqKbg+YpeTnWB+HgJ/jU9vfzikWrPIXO9wfXztYwG5hhO1I7sLyLN9gd7F72igHP0PomCjhZBBE2OOMWaxvxJJxcTvJxK6CIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiID//2Q=="],
+    "availability": true,
+    "generalInformation": {
+        "marketLaunchDate": "2020",
+        "OS": "Android",
+        "OSversion": "Android 10.0",
+        "brandedGraphicalInterface": "EMUI (10.1)",
+        "rule": "P Smart 2021 (Huawei)",
+        "screenSize": "6.67\"",
+        "screenResolution": "1080x2400",
+        "numOfmainCamera": 4,
+        "mainCamera": "48 Мп + 8 Мп + 2 Мп + 2 Мп",
+        "frontCamera": "8 Мп",
+        "RAM": 4,
+        "fashMemory": 128,
+        "supportForMemoryCards": "microSD (до 512 ГБ)",
+        "numOfSIMcards": 2,
+        "SIMCardFormat": "nano-SIM"
+    },
+    "description": {     
+        "CPU": {
+            "platform": "HiSilicon",
+            "processorType": "HiSilicon Kirin 710A",
+            "CPUclockSpeed": "2000 MHz",
+            "numberOfCores": 8,
+            "CPUmicroarchitecture": "4 x Cortex-A73 2.0 GHz + 4 x Cortex-A53 1.7 GHz",
+            "processorSize": "64 bits",
+            "technicalProcess": "12 nm",
+            "GraphicsAccelerator": "Mali-G51 MP4"
+        },
+        "design": {
+            "design": "моноблок",
+            "bodyMaterial": "пластик",
+            "glassConstruction": "2.5D",
+            "shockproofHousing": "нет",
+            "color": "черный",
+            "separateSlots": "нет",
+            "dustAndMoistureProtection": null
+        },
+        "screen": {
+            "screenResolution": "1080x2400",
+            "screenSize": "6.67\"",
+            "screenTechnology": "IPS",
+            "pixelDensity": "395 ppi",
+            "touchScreen": "да",
+            "frequency": "60 Гц"
+        },
+        "mainCamera": {
+            "resolution": "48 Мп",
+            "diaphragm": "ƒ/1.8",
+            "optionalCameraModule": "есть, датчик глубины, широкоугольный, макрообъектив",
+            "resolutionOfTheOptionalCameraModule": "8 Мп (широкоугольный), 2 Мп (датчик глубины и макрообъектив)",
+            "apertureOfAdditionalModule": " ƒ / 2.4 (x3)",
+            "focusing": "автоматическая",
+            "flash": "LED",
+            "imageStabilization": "цифровая",
+            "maximumPhotoPesolution": "8000 × 6000",
+            "maximumVideoResolution": "1920 × 1080 (FullHD)",
+            "maxVideoFrameRate": "30fps"
+        },
+        "frontCamera": {
+            "resolution": "8 Мп",
+            "diaphragm": "ƒ/2.0",
+            "maximumPhotoPesolution": "3264×2448",
+            "maximumVideoResolution": "1920 × 1080 (FullHD)"
+        },
+        "functions": {
+            "stereoSpeakers": "нет",
+            "registeringTheForceOfPressing": "нет",
+            "vibratingAlert": "есть",
+            "formatSupport": "MP3, AAC, WAV, MP4, FLAC, AMR, 3GP, OGG, Midi",
+            "dataTransfer": "LTE (стандарт сетей 4G), UMTS (стандарт сетей 3G), GSM (стандарт сетей 2G)",
+            "GSMstandard2G": "900, 1800, 1900, 850",
+            "securityAndUnlocking": "сканер отпечатка пальца, разблокировка по лицу",
+            "FMreceiver": "есть",
+            "navigation": "GPS, GLONASS, A-GPS, Beidou"
+        },
+        "sensors": {
+            "accelerometer": "есть",
+            "lightSensor": "есть",
+            "proximitySensor": "есть",
+            "compass": "есть",
+            "gyroscope": "есть"
+        },
+        "interfaces": {
+            "WiFi": "802.11 n",
+            "bluetooth": "есть",
+            "bluetoothVersion": "5.1",
+            "NFC": "есть",
+            "connectionSocket": "USB Type-C",
+            "audioOutput": "3.5mm jack"
+        },
+        "battery": {
+            "type": "Li-ion",
+            "capacity": "5000 мАч",
+            "USBcharging": "есть",
+            "chargingProcess": "быстрая зарядка, стандартная зарядка",
+            "nonRemovable": "есть"
+        },
+        "equipment": {"equipment": "руководство пользователя, зарядное устройство, скрепка для извлечения SIM-карты, наушники, кабель USB Type-C"}
+    }
+}

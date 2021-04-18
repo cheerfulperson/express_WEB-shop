@@ -1,8 +1,10 @@
 <header>
-    <div class="top_header">
+    <div class="top-header">
+       
+        {{#if isVisibleSubMenu}}{{> submenu}}{{/if}}
         <div class="logo">
-            {{!-- Убрать стиль ссылки --}}
-            <h1><a href="/">ELECTRONS</a></h1>
+            {{!-- Убрать стиль ссылки --}}           
+            <h1 class="main_title"><a href="/">DIO</a></h1>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-broadcast-pin" viewBox="0 0 16 16">
                 <path
@@ -31,7 +33,7 @@
                     </svg>
                 </button>      
             </nav>
-            <div id="addHelperMenu"class="visible-none">
+            <div id="addHelperMenu" class="visible-none">
                 {{getMainMenu}}
                 <input type="button" class="btn_log-out" value="Выйти">
             </div>

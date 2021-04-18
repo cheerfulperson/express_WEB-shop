@@ -1,0 +1,78 @@
+<div class="block-header">
+    <button><a onclick="history.back()"><i class="bi bi-arrow-left-circle"></i></a></button>
+    <h2 style="padding-left: 20px;">{{pat.type}} {{pat.brand}} {{pat.prodName}} ({{pat.description.design.color.data}})</h2>
+    <div style="padding-left: 500px"><input type="checkbox"> Добавить к сравнинию</div>
+    <div><input type="checkbox"> Добавить в избранное</div>
+</div>
+<div class="images">
+    {{#each pat.photos}}
+    <img src="{{this}}" style="width: 200px;">
+    {{/each}}
+</div>
+<div><span>цена: </span>{{pat.price}} Br</div>
+<div class="generalInformation" style="margin: auto;">
+    <h2>Главная информация</h2>
+    {{#each pat.generalInformation}}
+    <p style="text-align: left;">{{this.name}}: <span style="color:green;">{{this.data}}</span></p>
+    {{/each }}
+</div>
+<div class="block-header">
+    <button class="tablink" onclick="openPage('Description', this, 'green')"  id="defaultOpen">Описание</button>
+    <button class="tablink" onclick="openPage('Feedback', this, 'green')">Отзывы</button>
+    <button class="tablink" onclick="openPage('Contact', this, 'green')">Есть вопрос?</button>
+</div>
+<div class="block-body">
+    <div id="Description" class="tabcontent">
+        <table class="products-table info-mobile-phones">
+            {{#each pat.description}}
+                {{#if (isObject this)}}
+                    {{#each this}}
+                        {{#if (isObject this)}}
+                            <tr class="table-line">
+                                <td>{{this.name}}</td>
+                                <td>{{this.data}}</td>
+                            </tr>
+                        {{else}}
+                            <tr class="table-line table-info-title">
+                                <td >{{this}}</td>
+                                <td ></td>
+                            </tr>
+                        {{/if}}
+                    {{/each}}
+                {{else}}
+                    <tr>
+                        <th>{{this}}</th>
+                    </tr>
+                {{/if}}
+            {{/each }}
+        </table>
+    </div>
+
+    <div id="Feedback" class="tabcontent">
+    <h3>News</h3>
+    <p>Some news this fine day!</p> 
+    </div>
+
+    <div id="Contact" class="tabcontent">
+    <h3>Contact</h3>
+    <p>Get in touch, or swing by for a cup of coffee.</p>
+    </div>
+</div>
+<script>
+function openPage(pageName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(pageName).style.display = "block";
+    elmnt.style.backgroundColor = color;
+
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>

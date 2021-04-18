@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+const hbs = require('handlebars');
 
 const router = express.Router();
 
@@ -8,11 +9,13 @@ router.get('/', function (req, res, next) {
 
   let categories = fs.readFileSync('./categories.json', "utf-8");
   categories = JSON.parse(categories);
-
+  hbs.registerHelper('categories', (block) => {
+    block.data.root.categories = categories;
+  })
   res.render('layouts/home', {
-    title: 'GENERAL PAGE',
-    categories: categories,
-
+    title: 'Главная страница',
+    isVisibleCategories: true,
+    isAdvertisingPosterVisible: true
   })
 });
 router.post('/categories', function (req, res, next) {

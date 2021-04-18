@@ -1,3 +1,77 @@
-<div class="main-block block-with-products">
-    <div class="product-block"><img src="https://www.ixbt.com/img/r30/00/02/16/70/IMG3249.jpg" alt="" width="50px" height="50px"><p>Краткое описание товара</p><button><a href="/categories/smartphones-and-accessories/mobile-phones">Подробнее</a></button></div>
+<div class="main-pages-block">
+    <div class="account_nav outlined_block ">
+        <form id="compareProduct" action="/smartphones-and-accessories/:category">
+            <nav class="account_nav__list">
+                <div>
+                    <h3>Производитель</h3>
+                    {{#each section.brand}}
+                        
+                            <option value="{{this}}">
+                                <label class="container">{{this}}
+                                    <input type="checkbox">
+                                </label>
+                            </option>
+                       
+                    {{/each}}
+
+                </div>
+                <div>
+                    <h3>Цена</h3>
+                    <div><input type="number" placeholder="От" name="priceFrom"><input type="number" placeholder="До" name="PriceTo"></div>
+                    
+                </div>
+            <input type="submit" name="" id="" value="Подобрать">
+            </nav>
+        </form>
+
+    </div>
+    <div class="form_section block-with-products">
+
+    </div>
+    {{!-- {{#each products}}
+        <div class="product-block">
+            <img src="{{this.photos}}" alt="" width="50px" height="50px">
+            <p style="width: 300px; margin:auto;">
+            {{#each this.generalInformation}}
+                <span>{{this}} </span>
+            {{/each}}
+            </p>
+            <p>Цена: {{this.price}} Br</p>
+            <button><a
+                    href="/categories/smartphones-and-accessories/mobile-phones/{{this.individualNumber}}">Подробнее</a></button>
+        </div>
+    {{/each}} --}}
+        <style>
+div.scrollmenu {
+    background-color: #333;
+    margin: auto;
+    width: 300px;
+    overflow: auto;
+    white-space: nowrap;
+    border-radius:10px ;
+    z-index: 20;
+}
+div.scrollmenu::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 0 0 10px 10px;
+  background-color: #ffffff;
+}
+div.scrollmenu::-webkit-scrollbar-thumb {
+  border-radius: 0 0 10px 10px;
+  background-color: #18aaaa;
+}
+div.scrollmenu button {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu button:hover {
+    background-color: #777;
+}
+
+</style>
+    <div class="scrollmenu"></div>
 </div>

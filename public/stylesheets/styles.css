@@ -1,0 +1,836 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&family=Roboto:wght@500&display=swap");
+
+@keyframes loader {
+  0% {
+    transform: rotate(0)
+  }
+
+  100% {
+    transform: rotate(-360deg)
+  }
+}
+
+@keyframes loadmenu {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 600px;
+  }
+}
+
+@keyframes fallDown {
+  0% {
+    transform: translate(0, 0)
+  }
+
+  100% {
+    transform: translate(0, 15%)
+  }
+}
+
+* {
+  box-sizing: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #e1ffff 0%,#ffffff 0%,#e1ffff 81%,#e1ffff 86%,#e1ffff 99%,#cef0ff 100%,#bee4f8 100%,#c8eefb 100%,#b1d8f5 100%);
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+header {
+  top: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  background: linear-gradient(135deg, #e1ffff 0%,#ffffff 0%,#e1ffff 81%,#e1ffff 86%,#e1ffff 99%,#cef0ff 100%,#bee4f8 100%,#c8eefb 100%,#b1d8f5 100%);
+  box-shadow: 0 0 4px 0 #000000;
+}
+
+a {
+  text-decoration: none;
+}
+button{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+button:active, button:focus{
+  border: none;
+  outline: none;
+}
+li {
+
+  background: #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  user-select: none;
+}
+header .top-header {
+  width: 1400px;
+  height: 60px;
+  padding: 0 50px 0 50px;
+  display: flex;
+
+  align-items: center;
+
+}
+
+.logo {
+
+  display: flex;
+  right: 0;
+  transition: 0.5s;
+  color: #0991af;
+}
+
+.header-menu {
+  overflow: hidden;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  display: inline-flex;
+}
+
+.header-menu a {
+  /* margin: 10px; */
+  padding: 10px;
+
+  text-align: center;
+  border-radius: 10px;
+  text-transform: uppercase;
+  position: relative;
+
+  color: #000000;
+
+  text-decoration: none;
+}
+
+.header-menu a:hover {
+  background: #ebeaea;
+}
+
+.under-header{
+  position:relative;
+  width: 100%;
+  height: 500px;
+
+
+  background-image: url('https://cdn.pixabay.com/photo/2019/09/17/18/48/computer-4484282_1280.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0px 5px 2px #000000;
+}
+
+.fined {
+  width: 55vw;
+  height: 42px;
+  border: none;
+  background: rgba(250, 255, 228, 0.605);
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px 2px #000000;
+  display: inline-flex;
+
+}
+
+.fined input {
+  border: none;
+  width: 50vw;
+  height: 40px;
+  padding-left: 10px;
+  position: relative;
+  border-radius: 10px;
+  float: left;
+  background: none;
+}
+.fined input::after, .fined input:focus {
+  outline: none;
+}
+header .bottom_header input::after,
+header .bottom_header input:focus {
+  outline: none;
+}
+
+.fined button {
+  border: none;
+  border-top-right-radius:10px;
+  border-bottom-right-radius: 10px;
+  width: 5vw;
+}
+.fined button:hover{
+  background: lemonchiffon;
+}
+
+.block-of-person-info {
+  display: flex;
+  background: none;
+  z-index: 1;
+  right: 10px;
+
+  align-items: center;
+  text-align: center;
+  height: 40px;
+
+  border-radius: 10px;
+  border: 2px solid #d6d6d6;
+}
+
+.block-of-person-info-after-login {
+  display: flex;
+
+  background: none;
+  z-index: 1;
+
+  align-items: center;
+  text-align: center;
+  height: 100%;
+
+  border: none;
+}
+
+.button-menu {
+  border: none;
+  left: 30px;
+  background: none;
+  position: absolute;
+  cursor: pointer;
+}
+
+.button-menu:hover svg {
+  fill: #c2c2c2;
+}
+
+.button-menu:active,
+.button-menu:focus {
+  outline: none;
+}
+
+#getUserMenu {
+  position: relative;
+  display: flex;
+  background: none;
+  z-index: 1;
+  margin-right: 10px;
+  margin-left: 10px;
+
+  align-items: center;
+  text-align: center;
+  height: 40px;
+
+  border: none;
+}
+
+.user_profile_image {
+
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+
+  border-radius: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user_profile_image img {
+  height: 100%;
+  width: auto;
+}
+.preload_avatar{
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+.visible-none {
+  display: none;
+}
+
+.dropdown-wrapper {
+  position: absolute;
+  display: block;
+  top: 40px;
+  padding: 5px;
+  right: -10px;
+  z-index: 10;
+  width: 240px;
+  background-color: white;
+  background-clip: padding-box;
+  border: 1px solid rgb(214, 214, 214);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+  font-family: 'Quicksand', sans-serif;
+  text-align: left;
+
+}
+
+.dropdown-wrapper a {
+  display: block;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+  height: 32px;
+  line-height: 31px;
+  color: black;
+  cursor: pointer;
+  user-select: none;
+  outline: 0;
+}
+
+.dropdown-wrapper a:hover {
+  background: rgb(218, 218, 218);
+}
+
+.dropdown-wrapper a:active {
+  border-left: 2px solid blue;
+}
+
+.btn_log-out {
+  padding: 4px;
+  width: 100%;
+  border: none;
+  background: none;
+}
+
+.btn_log-out:hover {
+
+  background: rgb(218, 218, 218);
+}
+
+.btnflip {
+
+  padding-top: 9.5px;
+  padding-bottom: 9.5px;
+  padding-right: 10px;
+  padding-left: 10px;
+
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+
+  border: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  text-decoration: none;
+}
+
+.btnflip:hover {
+  background: #ffffff;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, .25);
+}
+
+.log-in-with-SN:nth-child(2) {
+  padding: 9px;
+  border-right: 1px solid #d6d6d6;
+  border-left: 1px solid #d6d6d6;
+}
+
+.log-in-with-SN:nth-child(3) {
+  padding: 9px;
+  border: none;
+}
+
+.log-in-with-SN:nth-child(4) {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 9px;
+  border-left: 1px solid #d6d6d6;
+}
+
+.log-in-with-SN:hover {
+  background: #ffffff;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, .25);
+}
+
+.settings {
+  background: none;
+  border: none;
+}
+
+.settings:hover svg {
+  animation: loader 2s infinite linear;
+}
+
+.settings:active,
+.settings:focus {
+  outline: none;
+}
+
+
+
+/* Add padding to containers */
+.container {
+  width: 30vw;
+  top: 0;
+  left: 0;
+  margin-top: 0;
+
+  padding: 16px;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+/* Full-width input fields */
+input[type=email],
+input[type=password],
+input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.placeholder::placeholder {
+  color: red;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #dddddd;
+  margin-bottom: 5px;
+
+}
+
+.password {
+  background: #f1f1f1;
+  width: 100%;
+  display: inline-flex;
+  position: relative;
+  border: none;
+  vertical-align: top;
+  margin: 5px 0 22px 0;
+}
+
+.password input {
+  display: block;
+  margin: 0 0 0 0;
+  width: 100%;
+}
+
+.password input:focus .password {
+  background-color: #ddd;
+}
+
+.password div {
+  border: none;
+  width: 10%;
+  margin-left: 90%;
+  margin-top: 15px;
+  position: absolute;
+  cursor: pointer;
+}
+
+/* Set a style for the submit/register button */
+.none-registerbtn {
+  background-color: #c7c7c7;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+/*=========================================== Главное меню ============================================= */
+.main_block {
+  margin-top: 10px;
+  width: 1400px;
+}
+
+.categories {
+
+  position: relative;
+  width: 100%;
+  padding-bottom: 50px; 
+}
+
+.categories ul {
+  width: 100%;
+
+  position: relative;
+  display: flex;
+
+  align-items: center;
+  text-align: center;
+}
+.categories ul li {
+
+  width: 10%;
+  height: 80px;
+  padding: 5px;
+  border-right: 1px solid burlywood;
+  background: rgb(253, 255, 223);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+
+  user-select: none;
+
+}
+.categories ul li:hover{
+ background: blueviolet;
+
+}
+.submenu{
+  display: none;
+  background: cornsilk;
+  width: 100%;
+  height: 600px;
+  
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  padding-bottom: 30px;
+  animation: loadmenu 0.3s linear alternate 1;
+}
+
+
+.ratio_image {
+  cursor: pointer;
+  width: 250px;
+  height: 250px;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.submenu-element{
+  margin-top: 20px;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+  vertical-align: auto;
+  background: black;
+}
+.submenu-element a {
+  position: absolute;
+  display: block; /* Ссылка как блочный элемент */
+  text-align: center; /* Выравнивание по центру */
+  height: 100%; /* Высота на весь слой */
+  color: rgb(253, 0, 0); /* Цвет ссылки */
+ }
+.ratio_image img {
+  height: 100%;
+  width: auto;
+}
+.btn-close{
+  position: relative;
+  float: right;
+}
+.btn-close:hover{
+  color: #dddddd;
+}
+.site-settings-categoris ul{
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.site-settings-categoris ul li {
+  width: 80%;
+  height: 30px;
+  display: flex;
+  text-align: left;
+  align-items: center;
+}
+.site-settings-categoris ul li span{
+  padding-right: 20px;
+  padding-left:  20px;
+  
+}
+.site-settings-categoris ul li button{
+  padding-left:  10px;
+  
+}
+.site-settings-categoris ul li button.button-subcategory{
+  position: absolute;
+  float: right;
+  padding: none;
+  color: #4CAF50;
+  margin-left: 80%;
+}
+/*======================
+    404 page
+=======================*/
+/* =============================================== ТАБЛИЦЫ ===========================================*/
+table.products-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  box-shadow: 0 0 5px 2px #D4D4D4;
+}
+
+table.products-table th,
+td {
+  text-align: left;
+  padding: 16px;
+}
+.table-info-title {
+  background: rgb(216, 255, 196);
+  font-size: 20px;
+  font-weight: bold;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+tr:nth-child(even).table-info-title {
+  
+  background: rgb(216, 255, 196);
+  font-size: 20px;
+}
+/*Таблица для главной краткой инфы*/
+table.short_product_info_table{
+  border-spacing: 0;
+  font-size: small;
+}
+table.short_product_info_table td {
+  text-align: left;
+  padding: 2px;
+  background-color: none;
+}
+table.short_product_info_table tr:nth-child(even) {
+  background-color: none;
+}
+/* =============================================== ТАБЛИЦЫ ===========================================*/
+
+.page_404 img {
+  width: 100%;
+}
+.four_zero_four_bg {
+
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  background-repeat: no-repeat;
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 120px;
+}
+
+.four_zero_four_bg h2 {
+  font-size: 80px;
+}
+
+.contant_box_404 p {
+  margin: auto;
+  width: 400px
+}
+.btn {
+  z-index: 1;
+  overflow: hidden;
+  background: transparent;
+  position: relative;
+  padding: 8px 50px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+  letter-spacing: 2px;
+  transition: 0.2s ease;
+  font-weight: bold;
+  margin: 5px 0px;
+
+}
+
+.btn.green {
+  border: 4px solid rgb(92, 255, 92);
+  color: var(--blue);
+}
+
+.btn.green:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 100%;
+  background: rgb(92, 255, 92);
+  z-index: -1;
+  transition: 0.2s ease;
+
+}
+
+.btn.green:hover {
+  color: white;
+  background: rgb(92, 255, 92);
+  transition: 0.2s ease;
+}
+
+.btn.green:hover:before {
+  width: 100%;
+}
+
+/*================================================= Документ с шаблоном товара ==================================*/
+.block-header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+/* Style tab links */
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: auto;
+}
+
+.tablink:hover {
+    background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    display: none;
+    height: 100%;
+}
+.main_pages_block{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1400px;
+  
+}
+.product_block{
+  display: flex;
+  padding: 10px;
+  border-bottom: 2px solid #c2c2c2;
+}
+.middle_block{
+  display: flex;
+  flex-direction: column;
+  width:60%;
+}
+.last_block{
+  width:20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.btn-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.btn-group button{
+  border-radius: 4px;
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  background: #00acac;
+  cursor: pointer;
+  text-align: center;
+  width: 80%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+  margin: auto;
+}
+
+.btn-group :nth-child(1) {
+  color: white; /* White text */
+  margin-bottom: 10px;
+}
+.btn-group :nth-child(2) {
+  color: white; /* White text */
+  background: #ffed4c;
+  margin-bottom: 10px;
+}
+.btn-group :nth-child(3) {
+  color: white; /* White text */
+  background: #65ff5d;
+  margin-bottom: 10px;
+}
+.image_container{
+  position: relative;
+  width: 20%;
+}
+.image_container img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.block_holder{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: flex-end;
+  margin: auto;
+  width: 100%;
+}
+.block_with_products{
+  width:80%;
+}
+.choice_menu{
+  padding: 10px;
+}
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 1400px) {
+  body{
+    margin: 0%;
+    padding: 0;
+    display: flex;
+    width: 100%;
+  }
+  .main_block{
+    width: 100%;
+  }
+}

@@ -11,25 +11,41 @@
     padding-top: 60px;
 }
 
-.sidenav a {
+.sidenav li:not(:first-child) {
+    width: 100%;
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
     display: block;
+
+    border: none;
+    outline: none;
+    text-align: center;
+    cursor: pointer;
     transition: 0.3s;
+    
+}
+li.sidenav_elements {
+    background-color: black;
+    color: rgb(255, 255, 255);
+    font-size: 26px;
+}
+li.sidenav_elements a{
+    text-align: center;
+    
+    background-color: none;
+    color: rgb(255, 255, 255);
+    font-size: 26px;
+}
+.sidenav li:not(:first-child):hover {
+    background-color:rgba(255, 255, 255, 0.551);
+    color: #000000;
 }
 
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-
-.sidenav .closebtn {
+.sidenav li.closebtn {
+    color: rgb(255, 255, 255);
     position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+    top:5px;
+    left: 200px;
 }
 
 .nav_bar_submenu {

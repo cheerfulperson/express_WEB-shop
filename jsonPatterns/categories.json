@@ -1,0 +1,49 @@
+[{
+    "title": "Смартфоны и аксессуары",
+    "name": "smartphoneAndAccessories",
+    "identNumber": 0,
+    "submenuContent": [{
+            "title": "Мобильные телефоны",
+            "name": "mobilephones",
+            "image": "https://cdn.pixabay.com/photo/2016/11/29/12/30/android-1869510_1280.jpg",
+            "href": "/categories/smartphones-and-accessories/mobile-phones"
+        },
+        {
+            "title": "Карты памяти",
+            "name": "flashcard",
+            "image": "https://lh3.googleusercontent.com/proxy/MWcbYo_DxninbOBeABzQj__OS2z3t71NhakLeF91E1yPF2ajYuTxgjqkn4PP2iNZwhm-fTGRKb7iHL03H2tzDts1ocn5jayjx185d_scDFcQ5I8hYh1sy4IKF8AUbNXqcGQubEcFMPAjJ9VTEbQJLW3ozJuxkg",
+            "href": ""
+        },
+        {
+            "title": "Зарядные устройства",
+            "image": "https://static-sl.insales.ru/images/collections/1/4895/1708831/VIDOjnMLpt.jpg",
+            "href": ""
+        },
+        {
+            "title": "Портативные зарядные устройства",
+            "image": "https://fainaidea.com/wp-content/uploads/2018/01/2-3-1-2b.jpg",
+            "href": ""
+        },
+        {
+            "title": "Аккумуляторы",
+            "image": "https://shoc.by/thumbs/2c/2cdf30de09fdd49a041bbef5cef3e80b.jpg",
+            "href": ""
+        },
+        {
+            "title": "Моноподы для селфи",
+            "image": "https://www.euromag.ru/storage/c/2018/12/28/1546002143_407661_34.jpg",
+            "href": ""
+        }
+    ]
+}, {
+    "title": "Телевидение и видео",
+    "name": "tvAndVideo",
+    "identNumber": 1,
+    "submenuContent": [{
+        "title": "Телевизоры",
+        "name": "tv",
+        "image": "https://cdn.pixabay.com/photo/2016/11/29/12/30/android-1869510_1280.jpg",
+        "href": "/categories/smartphones-and-accessories/tv"
+    }
+]
+}]

@@ -1,7 +1,7 @@
 <nav class="categories">
     <ul>
         {{#each categories}}
-        <li id="{{getIndividualCategoriesNumber this}}">{{getCategoriesName this}}</li>
+        <li id="{{ this.identNumber}}">{{this.title}}</li>
         {{/each}}
     </ul>
 </nav>

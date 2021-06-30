@@ -1,4 +1,3 @@
-
 <span class="nav_bar_submenu" onclick="openNav()">
     <div></div>
     <div></div>
@@ -8,13 +7,30 @@
 
 {{!-- <span style="font-size:30px;cursor:pointer">☰ open</span> --}}
 <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-    <a href="/site-settings">Статистика</a>
-    <a href="/site-settings/categories">Категории</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+    <ul>
+        <li class="sidenav_elements closebtn" onclick="closeNav()"> <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z" />
+                </svg>
+            </span></li>
+        <li class="sidenav_elements" onclick="showContent('nav_menu')">
+            <span>Управление продукцией</span>
+        </li>
+            <ul id="nav_menu" class="nav_menu hide">
+                <li class="nav_menu_element" onclick="showContent('categories')"><a
+                        href="/site-settings/production/categories"><span>Категории</span></a></li>
+                <li class="nav_menu_element" onclick="showContent('addProduct')"><a
+                        href="/site-settings/production/addition-product"><span>Добавление товара</span></a></li>
+                <li class="nav_menu_element"><a href=""></a></li>
+                <li class="nav_menu_element"><a href=""></a></li>
+            </ul>
+        <li class="sidenav_elements"><a href="/site-settings">Статистика</a></li>
+        <li class="sidenav_elements"></li>
+    </ul>
 </div>
-<script>
+<script >
     function openNav() {
         document.getElementById("mySidenav").style.width = "250px";
         document.querySelector('.logo').style.marginLeft = "150px";
@@ -24,4 +40,41 @@
         document.getElementById("mySidenav").style.width = "0";
         document.querySelector('.logo').style.marginLeft = "0";
     }
+
+    function showContent(id) {
+        let element = document.getElementById(id);
+        if (element.classList.contains('hide')) element.classList.remove('hide'); // contains - поиск подкласса, remove - удаление подкласса, toggle - добавление в класс нового подкласса
+        else element.classList.toggle('hide');
+    }
 </script>
+<style>
+    .nav_menu {
+        width: 100%;
+        transition: 0.5s;
+    }
+
+    .nav_menu li {
+        display: block;
+        background-color: inherit;
+        border-bottom: 1px solid black;
+        color: black;
+        height: 40px;
+    }
+    .nav_menu li {
+        text-align: left;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+    .nav_menu li:hover {
+        background-color: #ddd;
+    }
+
+    .nav_menu li:active {
+        background-color: #ccc;
+    }
+
+    .hide {
+        display: none;
+    }
+</style>

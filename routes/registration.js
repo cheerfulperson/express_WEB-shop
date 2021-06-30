@@ -36,7 +36,7 @@ router.post('/', function (req, res, next) {
       name: req.body.name, // Name юзера
       email: req.body.email, // email юзера
       password: req.body.password, // password юзера захешированный
-      personalID: crypto.randomBytes(4).toString('hex'), //Зашифрованный personalID Удалить
+      personalID: crypto.randomBytes(4).toString('hex'), //Зашифрованный personalID 
       notifications: !req.body.notifications ? "on" : null, // Уведомления пользователя
     }
 

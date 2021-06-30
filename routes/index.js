@@ -7,7 +7,7 @@ const router = express.Router();
 /* GET home page. */
 router.get('/', function (req, res, next) {
 
-  let categories = fs.readFileSync('./categories.json', "utf-8");
+  let categories = fs.readFileSync('./jsonPatterns/categories.json', "utf-8");
   categories = JSON.parse(categories);
   hbs.registerHelper('categories', (block) => {
     block.data.root.categories = categories;
@@ -15,11 +15,12 @@ router.get('/', function (req, res, next) {
   res.render('layouts/home', {
     title: 'Главная страница',
     isVisibleCategories: true,
-    isAdvertisingPosterVisible: true
+    isAdvertisingPosterVisible: true,
+    isVisibleCatalog: true
   })
 });
 router.post('/categories', function (req, res, next) {
-  let categories = fs.readFileSync('./categories.json', "utf-8");
+  let categories = fs.readFileSync('./jsonPatterns/categories.json', "utf-8");
   res.send(categories);
 });
 

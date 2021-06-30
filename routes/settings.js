@@ -1,8 +1,64 @@
-const express = require('express');
+const router = require('express').Router();
 const db = require('../modules/DB-config');
 const bcrypt = require('bcrypt'); // Хеширование данных
+const multer = require('multer');
+const path = require('path');
+const { hostname } = require('os')
+const {
+  readdirSync,
+  unlinkSync
+} = require('fs');
+// Moduls
+const ModCrypto = require('../modules/secret');
 
-const router = express.Router();
+
+
+
+const key = process.env.MYKEY, // переменная окружения
+  maxSize = 3000000; // максимальный размер 3мб
+
+// Multer settings
+// Определение конфигурации хранения
+const storageConfig = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./public/data/images/avatars");
+  },
+  filename: (req, file, cb) => {
+    let name = req.session.user.personalID;
+    let type = '.' + file.mimetype.split("/")[1];
+    try {
+      const root = path.join(__dirname, '..', 'public', 'data', 'images', 'avatars')
+      const files = readdirSync(root, 'utf8')
+      for (const file of files) {
+        if (file.split("-")[0] == req.session.user.personalID) unlinkSync(path.join(__dirname, '..', 'public', 'data', 'images', 'avatars', file)) // удаление уже существующих изображений данного пользователя
+      }
+    } catch (error) {
+      console.error(error)
+    }
+    cb(null, name + '-' + ModCrypto.encryptCip(Date.now().toString(), key, 'aes-192-cbc') + type);
+  }
+});
+// определение фильтра
+const fileFilter = (req, file, cb) => {
+
+  if (file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/jpeg") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+}
+// Определение объекта мулер
+let upload = multer({
+  storage: storageConfig,
+  fileFilter: fileFilter,
+  limits: {
+    fileSize: maxSize,
+  }
+}).single('avatars')
+
+// использование multer в этом маршруте
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {
@@ -25,7 +81,6 @@ router.get('/', (req, res, next) => {
     }
     user.profileSettings = objSettings;
     req.session.user = user;
-
     res.render('layouts/settings-userProfile', {
       title: "Настройки профиля",
       isVisiableMainBlock: false,
@@ -44,6 +99,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/registration-data', (req, res, next) => {
   let user = req.session.user;
+
   res.render('layouts/settings-register', {
     title: "Регистрационный данные",
     isVisiableMainBlock: false,
@@ -52,9 +108,44 @@ router.get('/registration-data', (req, res, next) => {
   })
 })
 
-router.put('/upluad-user-image', (req, res, next) => {
+router.post('/upload', upload, (req, res, next) => {
   // Обновляем avatar пользователя
-  if (req.body.src) req.session.user.image = req.body.src;
+
+  let userInfo, update, imageUrl,
+    avatar = req.file;
+  try {
+    if (!avatar) {
+      if(req.body.src){
+        if (!req.body.src.match(/^data:([A-Za-z-+/]*)/i))
+          imageUrl = req.body.src;
+      }
+    } else {
+
+        // Everything went fine.
+        if (avatar) {
+          imageUrl = "http://" + req.headers.host + "/images/avatar/" + avatar.filename;
+          console.log("avatar" + avatar)
+        } else {
+          console.log(avatar)
+          console.log("errr")
+        }
+
+
+    }
+    // Обновляем данные пользователя
+
+    if (req.session.user.profileImage != imageUrl && imageUrl) {
+      console.log("imageUrl:" + imageUrl)
+      req.session.user.profileImage = imageUrl;
+      userinfo = [imageUrl];
+      update = `UPDATE mytable SET photo=? WHERE personalID='${req.session.user.personalID}'`;
+      db.query(update, userinfo, function (error, results) {
+        if (error) console.error(error);
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
   res.redirect('/settings');
 })
 
@@ -63,46 +154,30 @@ router.post('/save-settings', (req, res, next) => {
   let form = req.body;
   let user = req.session.user;
 
-  let objSettings = {};
-
-  if (form.name == '') {
-
-  } else {
-    // Перебор внесенных данных и если ничего не ввел, то null
-    for (let element in form) {
-      if (form[element] == '') form[element] = null;
+  if (!form.name || form.name == '') form.name = "User" + req.session.user.personalID
+  // Перебор внесенных данных и если ничего не ввел, то null // Если поменял что-то, то это в сесси меняется
+  console.log(form)
+  for (let element in form) {
+    let el = form[element];
+    if (element == 'name') {
+      user.name = form.name;
+      continue;
     }
-
-    // Если поменял что-то, то это в сесси меняется
-    user.name = form.name;
-    if (user.image) {
-      user.profileImage = user.image;
-      delete user.image;
-    }
-    objSettings.sername = form.sername;
-    objSettings.bio = form.bio;
-    objSettings.birthday = form.birthday;
-    if (form.gender != "0" || form.gender != undefined) objSettings.gender = form.gender;
-    objSettings.phone1 = form.phone1;
-    objSettings.phone2 = form.phone2;
-    objSettings.phone3 = form.phone3;
-    objSettings.seconedEmail = form.seconedEmail;
-    for (let el in objSettings) {
-      if (objSettings[el] == null) objSettings[el] = "";
-    }
-    user.profileSettings = objSettings;
-
-    req.session.user = user;
-
-    let userInfo = [user.name, form.sername, form.bio, user.profileImage, form.birthday, form.gender, form.phone1, form.phone2, form.phone3, form.seconedEmail, user.personalID];
-    let update = `UPDATE mytable SET name=?, sername=?, bio=?, photo=?, birthday=?, gender=?, phone1=?, phone2=?, phone3=?, seconedEmail=? WHERE personalID=?`;
-
-    // Обновляем данные пользователя
-    db.query(update, userInfo, function (error, results) {
-      if (error) console.error(error);
-    });
-    res.redirect('/settings');
+    if (!el || el != '' || el != '0') user.profileSettings[element] = form[element];
+    else user.profileSettings[element] = null;
   }
+
+  req.session.user = user;
+
+  let userInfo = [user.name, form.sername, form.bio, form.birthday, form.gender, form.phone1, form.phone2, form.phone3, form.seconedEmail, user.personalID];
+  let update = `UPDATE mytable SET name=?, sername=?, bio=?, birthday=?, gender=?, phone1=?, phone2=?, phone3=?, seconedEmail=? WHERE personalID=?`;
+
+  // Обновляем данные пользователя
+  db.query(update, userInfo, function (error, results) {
+    if (error) console.error(error);
+    res.redirect('/settings');
+  });
+
 
 })
 //PUT - используется для обновления уже существующей записи(ей);

@@ -5,30 +5,23 @@ const createError = require('http-errors'),
   session = require('express-session'),
   path = require('path'),
   cookieParser = require('cookie-parser'),
-  logger = require('morgan');
-const express = require('express'),
-  app = express();
-const debug = require('debug')('myapp:server'),
+  logger = require('morgan'),
+  express = require('express'),
+  debug = require('debug')('myapp:server'),
   http = require('http');
+const app = express();
+
+const key = process.env.MYKEY;
 
 // Get port from environment and store in Express.
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 //Create HTTP server.
-var server = http.createServer(app);
-
-
-//Get socket.io
-// const io = require('socket.io')(server);
-// io.on('connection', (socket) => {
-//   console.log('a user connected');
-//   socket.on('disconnect', () => {
-//     console.log('user disconnected');
-//   });
-// });
+let server = http.createServer(app);
 
 // Routes
+const getImages = require('./routes/getImages');
 const homeRouter = require('./routes/index');
 const registrationRouter = require('./routes/registration');
 const newsRouter = require('./routes/news');
@@ -40,9 +33,9 @@ const siteSettingsRouter = require('./routes/site-settings');
 const settingsRouter = require('./routes/settings');
 const categoriesRouter = require('./routes/categories');
 
+
 // Modules
 const hbsCreater = require('./modules/hbsCreater');
-
 // Middleware
 const checkRoles = require('./middleware/checkRoles');
 const checkAuth = require('./middleware/checkAuthorization');
@@ -68,11 +61,7 @@ app.engine('hbs', expressHbs({
       return arr.identNumber;
     },
     getUndefined: (data) => {
-      return data == undefined ? true : false;
-    },
-    getGender: (sex) => {
-      if (sex == '') return 'выберите'
-      return sex == "1" ? "муж" : "жен";
+      return data == undefined || data == null ? true : false;
     },
     creatPageMenu: (amount) => {
       let scrollMenu = '';
@@ -123,14 +112,16 @@ app.use('/', (req, res, next) => {
   // })
   if (req.session.user != undefined && req.session.user.status == "login") {
     hbsCreater.createHelpMenu(req, res);
+    hbsCreater.getAvatar(req, res);
   }
   hbsCreater.getIsUser(req, res);
-  hbsCreater.getAvatar(req, res);
+
   next();
 })
 
 // Роутеры
 app.use('/', homeRouter);
+app.use('/images', getImages);
 app.use('/registration', checkAuth, registrationRouter);
 app.use('/news', newsRouter);
 app.use('/contacts', contactsRouter);
@@ -142,8 +133,10 @@ app.use('/site-settings', checkRoles(['ADMIN']), siteSettingsRouter);
 app.use('/settings', checkRoles(['USER', 'SELLER', 'ADMIN']), settingsRouter);
 
 
+
+
 // Выход из аккаунта
-app.post('/logout', (req, res) => {
+app.delete('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) console.error(err)
     res.redirect('/');
@@ -154,6 +147,7 @@ app.post('/logout', (req, res) => {
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -236,6 +230,7 @@ function onError(error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
+const dns = require('dns');
 
 function onListening() {
   var addr = server.address();
@@ -243,5 +238,8 @@ function onListening() {
     'pipe ' + addr :
     'port ' + addr.port;
   console.log("Server created on http://127.0.0.1:" + addr.port);
+  dns.lookup(require('os').hostname(), function (err, add, fam) {
+    console.log('or http://' + add + ':' + addr.port);
+  })
   debug('Listening on ' + bind);
 }

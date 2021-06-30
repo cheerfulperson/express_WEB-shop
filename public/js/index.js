@@ -5,15 +5,7 @@ const registerBtn = document.getElementById('regBtn');
 const btnMenu = document.getElementById('getUserMenu');
 const helperMenu = document.getElementById('addHelperMenu');
 const textCheckPsw = document.getElementById('checkPsw');
-// Настройки пользователя
-const blockUserImages = document.querySelector('.choose_image');
-const deleteUserImg = document.getElementById('delete_profile_image');
-// Настройки регистрацинные данные
-const inputOldPassword = document.getElementById('oldPassword');
-const inputNewPassword = document.getElementById('newPassword');
-const inputNewRptPassword = document.getElementById('newRptPassword');
-const btnChangePassword = document.getElementById('changePassword');
-const incorrectMessage = document.getElementById('incorrectMessage');
+
 // Главная страница
 const subMenu = document.getElementById('submenu');
 const menuOfCategories = document.querySelectorAll('.categories ul li');
@@ -42,7 +34,9 @@ async function getDataFromServer(url = '', method, block) {
         console.error('Ошибка:', error);
     }
 }
+async function pullDataToServer(url = '', method, block){
 
+}
 if (subMenu != undefined) {
     function createContent(arr) {
         for (let n in arr) {
@@ -150,221 +144,10 @@ if (showPasswordBtn != undefined) {
         });
     }
 }
-// Регистрационные данные -> меняем пароль
-if (inputOldPassword != undefined && inputNewPassword != undefined) {
-    function checkPsw(psw, rptPsw) {
-        if (psw.value == '') {
-            psw.style.background = "";
-            rptPsw.style.background = "";
-            incorrectMessage.innerHTML = '';
-        } else if (psw.value.length < 6) {
-            incorrectMessage.innerHTML = 'Пароль должен быть не менее 6 символов';
-            psw.style.background = "#ffaca6";
-        } else {
-            psw.style.background = "#aaffa6";
-            if (psw.value == rptPsw.value) {
-                rptPsw.style.background = "#aaffa6";
-                incorrectMessage.innerHTML = '';
-            } else if (psw.value != rptPsw.value) {
-                rptPsw.style.background = "#ffaca6";
-                incorrectMessage.innerHTML = 'Пароли не совпадают!!!'
-            }
-        }
-
-    }
-
-    function checkOldPsw(oldPsw, newPsw, newRptPsw) {
-
-        let password = JSON.stringify({
-            oldPassword: oldPsw.value,
-            newPassword: newPsw.value,
-            newRptPassword: newRptPsw.value
-        });
-
-        if (oldPsw.value == "" && newPsw.value == "" && newRptPsw.value == "") { // Если ничего не введено
-            oldPsw.style.background = "#ffaca6";
-            newPsw.style.background = "#ffaca6";
-            newRptPsw.style.background = "#ffaca6";
-            incorrectMessage.innerHTML = "Ничего не введено";
-            setTimeout(() => {
-                oldPsw.style.background = "";
-                newPsw.style.background = "";
-                newRptPsw.style.background = "";
-                incorrectMessage.innerHTML = "";
-            }, 5000)
-            return;
-        }
-        let xhr = new XMLHttpRequest();
-
-        xhr.open('PUT', '/settings/registration-data/change-account-password'); //Установка типа запроса и адрес
-
-        xhr.setRequestHeader('Content-Type', 'application/json'); //Установка формы отправки
-
-        xhr.send(password); // Отправка на сервер
-
-        xhr.onload = function () { // Когда пришел ответ с сервера, то выполняется это
-            let res = JSON.parse(xhr.responseText);
-
-            if (res.isInvalidPassword != undefined) {
-                if (res.isInvalidPassword) {
-                    oldPsw.style.background = "#ffaca6";
-                    incorrectMessage.innerHTML = `Неправильный пароль`;
-                } else {
-                    newRptPsw.style.background = "";
-                    newPsw.style.background = "";
-                    oldPsw.style.background = "";
-                    newPsw.value = "";
-                    newRptPsw.value = "";
-                    oldPsw.value = "";
-                    incorrectMessage.style.color = "#0bff00";
-                    incorrectMessage.innerHTML = `Пароль успешно изменен`;
-                    setTimeout(() => {
-                        incorrectMessage.style.color = "red";
-                        incorrectMessage.innerHTML = "";
-                    }, 5000)
-                }
-            } else if (res.errorMessage != undefined) {
-                incorrectMessage.style.color = "red";
-                if (res.errorMessage == 0) {
-                    incorrectMessage.innerHTML = "Пароли не совпадают!!!";
-                } else if (res.errorMessage == 1) {
-                    incorrectMessage.innerHTML = "Длина пароля менее 6 символов";
-                }
-            }
-
-        }
-    }
-    inputOldPassword.addEventListener('keyup', () => {
-        checkPsw(inputOldPassword, "")
-    });
-    inputNewPassword.addEventListener('keyup', () => {
-        checkPsw(inputNewPassword, inputNewRptPassword)
-    });
-    inputNewRptPassword.addEventListener('keyup', () => {
-        checkPsw(inputNewPassword, inputNewRptPassword)
-    });
-    btnChangePassword.addEventListener('click', () => {
-        checkOldPsw(inputOldPassword, inputNewPassword, inputNewRptPassword)
-    })
-}
-// POST TO SERVER
-const btnLogOut = document.querySelector('.btn_log-out');
-
-if (btnLogOut != undefined || btnLogOut != null) {
-    function deleteSession() {
-        let xhr = new XMLHttpRequest();
-
-        xhr.open('POST', '/logout');
-        xhr.send();
-        xhr.onload = () => {
-            document.location = '/';
-        }
-    }
-
-    btnLogOut.addEventListener('click', deleteSession)
-}
-// Отправляет картинку на сервер
-if (blockUserImages != undefined) {
-    const image = document.querySelector('.form_settings__image');
-
-    function uploadImage(e) {
-        let src = JSON.stringify({
-            src: e.firstChild.src
-        });
-        let xhr = new XMLHttpRequest();
-
-        xhr.open('PUT', '/settings/upluad-user-image');
-
-        xhr.setRequestHeader('Content-Type', 'application/json'); //установка формы заброса
-
-        xhr.send(src);
-
-        xhr.onerror = (err) => {
-            console.error(err);
-        }
-
-        //
-        image.animate([{
-            opacity: 0
-        }, {
-            opacity: 1
-        }], {
-            duration: 1000,
-            iterations: 1
-        })
-        image.src = e.firstChild.src;
-    }
-    deleteUserImg.addEventListener('click', (e) => {
-        uploadImage({
-            firstChild: {
-                src: "https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png"
-            } //установка картинки по дефолду
-        })
-    })
-    for (let i = 0; i < blockUserImages.children.length; i++) {
-        let element = blockUserImages.children[i];
-        element.addEventListener('click', (e) => {
-            uploadImage(element); //Отправка ссылки на картинку на сервер
-        })
-    }
-}
-
-if (window.location.pathname.split("/")[1] == 'categories' && window.location.pathname.split("/").length == 4) {
-    let scrollMenu = document.querySelector('.scrollmenu'),
-        blockOfproducts = document.querySelector('.block-with-products'),
-        blockCompareProduct = document.getElementById('compareProduct'),
-        div;
-    getDataFromServer(window.location.href, 'PUT')
-        .then((data) => {
-            products = data.products;
-            blockCompareProduct.action = window.location.href;
-            for (let i = 1; i <= Math.ceil(data.amount / 30); i++) {
-                scrollMenu.innerHTML += `<button id ="${i}">${i}</button>`;
-            }
-            console.log()
-            constructBlockProduct(div, products);
-            console.log(data, "usagedata: " + (data.dataUsage / 1024).toFixed(1) + " Кбайт");
-
-            // JSON data parsed by `response.json()` call
-        });
-        function constructBlockProduct(div, products){
-            let shortDescription = "";
-            blockOfproducts.innerHTML = "";
-            blockOfproducts.style.filter = "blur(5px)";
-            for (let index = 0; index < products.length; index++) {
-                shortDescription = "";
-                for(let n in products[index].generalInformation){
-                    shortDescription += products[index].generalInformation[n] + ", ";
-                }
-                div = document.createElement('div');
-                div.className = 'product-block';
-                div.innerHTML = `<img src="${products[index].photos}" alt="" width="50px" height="50px">
-                                <p style="width: 300px; margin:auto;">
-                                    ${shortDescription}
-                                </p>
-                                <p>Цена: ${products[index].price} Br</p>
-                                <button><a
-                                        href="/categories/smartphones-and-accessories/mobile-phones/${products[index].individualNumber}">Подробнее</a></button>`
-                blockOfproducts.append(div);              
-            }
-            blockOfproducts.style.filter = "none";
-        }
-    function newPage(el){
-        el.style.background = '#18aaaa';
-        let url = new URL("?page=" + el.id, window.location.href);
-        window.history.pushState("string", "", url);
-        getDataFromServer(url, 'PUT')
-        .then((data) => {
-            console.log("usagedata: " + (data.dataUsage / 1024).toFixed(1) + " Кбайт")
-            products = data.products;          
-            // var enc = new TextEncoder(); // always utf-8
-            constructBlockProduct(div, products);
-        });
-    }
-    scrollMenu.addEventListener('click', (e) => {
-        for(let n in scrollMenu.childNodes)
-            if(typeof scrollMenu.childNodes[n] == 'object')scrollMenu.childNodes[n].style.background = "";    
-        if(e.target != scrollMenu)newPage(e.target)
-    })
-    
-}
+// Кнопка выйти
+document.querySelector('.btn_log-out').addEventListener('click', (e)=>{
+    var xhr = new XMLHttpRequest();
+    xhr.open("DELETE", '/logout', true);
+    xhr.send();
+    location.reload();
+})

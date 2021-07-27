@@ -1,0 +1,35 @@
+<form action="/login" method="post">
+    <div class="container">
+        <h1>Авторизация</h1>
+        <p>Пожалуйста, заполните эту форму, чтобы войти в аккаунт.</p>
+        <hr>
+        <label for="email"><b>Почта</b></label>
+        <input type="email" placeholder={{#if isEmailsReapet}} "Электронная почта уже занята" class="placeholder"
+            {{else}} "Пример: electrons.contact@gmail.com" class="" {{/if}} name="email">
+
+        <label for="psw"><b>Пароль</b></label>
+        <div class="password">
+
+            <input id="password" type="password" placeholder="Введите пароль" name="password" value={{password}}>
+            <div id="showPasswordBtn"></div>             {{!-- иконка глазик --}}
+        </div>
+        {{!-- <hr> --}}
+        {{#if isNotCorectUsersData}}
+        <p style="color: red;">Неверный пароль или адрес электронной почты</p>
+        {{/if}}
+
+        {{!-- Конча --}}
+        {{!-- <form action="?" method="POST">
+            <div class="g-recaptcha" data-sitekey="6LfFzloaAAAAAM75FX57Q7SYkRLVhZy9ytr_DHpL"></div>
+            <br />
+        {{#if isNotCorectCapture}} 
+        <p style="color: red;">Вы не прошли кончу</p>
+        {{/if}}
+            
+        </form> --}}
+        <input type="submit" class="registerbtn" value="Войти">
+        <div class="container-signin">
+            <p>Не зарегистрированы? <a href="/registration">Регистрация</a>.</p>
+        </div>
+    </div>
+</form>

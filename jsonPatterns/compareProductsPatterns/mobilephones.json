@@ -1,0 +1,63 @@
+{
+    "type": ["cмартфон", "мобильный телефон"],
+    "brand": ["huawei", "nokia", "sumsung", "xiaomi", "honor", "philips"],
+    "price": [0, 10000],
+    "availability": [true, false],
+    "generalInformation": {
+        "marketLaunchDate": {
+            "content": ["2021", "2020"],
+            "view": ["checkBox", ["inputs", 2]],
+            "units": null
+        },
+        "OS": {
+            "content": ["Android", "ios"],
+            "view": ["checkBox"],
+            "units": null
+        },
+        "screenSize": {
+            "content": [0.66, 7.6],
+            "view": ["checkBox", ["inputs", 2]],
+            "units": "\""
+        },
+        "screenResolution": {
+            "content": ["68-3200", "68-1440"],
+            "view": ["checkBox"],
+            "units": null
+        },
+        "mainCamera": {
+            "content": ["48", "8", "4", "2"],
+            "view": ["checkBox", ["inputs", 2]],
+            "units": "Мп"
+        },
+        "frontCamera": {
+            "content": ["48", "8", "4", "2"],
+            "view": ["checkBox", ["inputs", 2]],
+            "units": "Мп"
+        },
+        "RAM": {
+            "content": ["1", "2", "3", "4", "6", "8", "12", "16"],
+            "view": ["checkBox", ["inputs", 2]],
+            "units": "ГБ"
+        },
+        "fashMemory": {
+            "content": ["1", "4", "8", "16", "32", "64", "128", "256", "512"],
+            "view": ["checkBox", ["inputs", 2]],
+            "units": "ГБ"
+        },
+        "supportForMemoryCards": {
+            "content": ["да", "нет"],
+            "view": ["checkBox"],
+            "units": null
+        },
+        "numOfSIMcards": {
+            "content": [1, 2],
+            "view": ["checkBox"],
+            "units": null
+        },
+        "SIMCardFormat": {
+            "content": ["nano-SIM", "micro-SIM", "SIM"],
+            "view": ["checkBox"],
+            "units": null
+        }
+    }
+}

@@ -1,0 +1,133 @@
+
+    <div class="block_holder block_products">
+        <div class="account_nav outlined_block " id="selection_form">
+            <form id="compareProduct">
+                    <div class="brand" id="brand" name="brand" objectVariable="brand">
+                        <h3>Производитель</h3>
+                        {{#each section.brand}}
+                            <label title="{{this}}">
+                                <input type="checkbox" value="{{this}}">
+                                {{this}}
+                            </label>
+                        
+                        {{/each}}
+                    </div>
+                    <div class="price" id="price" objectVariable="price">
+                        <h3>Цена</h3>
+                        <div>
+                            <input type="number" id="from" min="0" placeholder="От"> 
+                            <input type="number" id="to" min="0" placeholder="До"> 
+                        </div>               
+                    </div>
+                    <div class="type" id="type" objectVariable="type">
+                        <h3>Тип</h3>
+                        {{#each section.type}}
+                            <label title="{{this}}">
+                                <input type="checkbox" value="{{this}}">
+                                <span>{{this}}</span>
+                            </label>
+                        {{/each}}
+                    </div>           
+                    <div id="generalInformation" objectVariable="generalInformation">                        
+                        {{ViewModuls section.generalInformation}}
+                    </div>
+                    <div id="description"></div>
+                <input type="submit" id="send" value="Подобрать">
+            </form>
+
+        </div>
+        <div id="block_with_products" class="form_section block_with_products"></div>
+    </div>
+    {{!-- {{#each products}}
+        <div class="product-block">
+            <img src="{{this.photos}}" alt="" width="50px" height="50px">
+            <p style="width: 300px; margin:auto;">
+            {{#each this.generalInformation}}
+                <span>{{this}} </span>
+            {{/each}}
+            </p>
+            <p>Цена: {{this.price}} Br</p>
+            <button><a
+                    href="/categories/smartphones-and-accessories/mobile-phones/{{this.individualNumber}}">Подробнее</a></button>
+        </div>
+    {{/each}} --}}
+        <style>
+div.scrollmenu {
+    position: relative;
+    background-color: #333;
+    margin: auto;
+    width: 300px;
+    overflow: auto;
+    white-space: nowrap;
+    border-radius:10px ;
+    z-index: 20;
+}
+div.scrollmenu::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 0 0 10px 10px;
+  background-color: #ffffff;
+}
+div.scrollmenu::-webkit-scrollbar-thumb {
+  border-radius: 0 0 10px 10px;
+  background-color: #18aaaa;
+}
+div.scrollmenu button {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu button:hover {
+    background-color: #777;
+}
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+    <div class="scrollmenu"></div>
+
+<script src="/js/productsForm.js"></script>

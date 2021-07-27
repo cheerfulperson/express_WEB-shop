@@ -1,0 +1,35 @@
+<h1>{{getTitle title}}</h1>
+<div class="account__holder">
+
+    <form method="post" action="/" name="settings">
+        <div class="form_section">
+
+            <h2 style="padding-top: 40px">Редактировать категории</h2>
+            <nav class="categories site-settings-categoris">
+                <ul>
+                    {{#each categories}}
+                    <li id="{{getIndividualCategoriesNumber this}}">{{getCategoriesName this}}</li>
+                    {{/each}}
+                </ul>
+            </nav>
+
+
+        </div>
+
+        <div class="form_section  form_section_type_mypages">
+            <h2>Персы</h2>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1>Всего зарегистрированных пользователей: {{counter_user}}</h1>
+            <p></p>
+            <div class="pretty_button">
+                <button type="submit">Сохранить <i class="bi bi-cloud-arrow-up"></i></button>
+            </div>
+        </div>
+
+    </form>
+</div>

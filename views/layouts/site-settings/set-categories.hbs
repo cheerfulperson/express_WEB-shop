@@ -1,0 +1,18 @@
+<h2 style="padding-top: 40px">Редактировать категории</h2>
+<div class="form_section">
+    <nav class="site-settings-categoris">
+        <ul>
+            {{#each categories}}
+            <li id="{{getIndividualCategoriesNumber this}}">
+
+                <input type="checkbox" name="activator" id="activateCtegiri">
+                <button><i class="bi bi-trash"></i></button>
+
+                <button><i class="bi bi-pencil"></i></button>
+                <span>{{getCategoriesName this}}</span>
+                <button class="button-subcategory" id="add-subcategory"><i class="bi bi-plus"></i></button>
+            </li>
+            {{/each}}
+        </ul>
+    </nav>
+</div>

@@ -1,0 +1,44 @@
+{{!-- основной файл --}}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="https://proxy.mc-market.org/f55a14af93f66030c17c4a6cf19d1dfb1de51bb5?url=https%3A%2F%2Fi.gyazo.com%2F12ea464af0e608db5aa5f487285d8416.png" type="image/x-icon">
+  <link rel='stylesheet' href='/stylesheets/settings.css' />
+  <link rel="stylesheet" href="/stylesheets/submenu.css" />
+  <link rel='stylesheet' href='/stylesheets/styles.css' />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"> {{!-- Bootstrap --}}
+  <script src="/js/live_search.js" defer></script> {{!-- Живой поиск --}}
+  <script src="/js/modal_user.js" defer></script>
+  <script src="/js/index.js" defer></script>  
+</head>
+{{!-- Вызвывает вспомогательный хелперов, общих объектов и переменных, которые действуют на все маршруты --}}
+  {{!-- {{clear}} --}}
+  {{getLoginUserProfil}} 
+  {{!-- {{siteSettingsHelpers}}  --}}
+  {{#if isVisibleCategories}}{{categories}}{{/if}}
+{{!-- /Вызов  --}}
+<body>
+  {{> header}}
+
+   <div class="main_block">
+  {{#if (getUndefined isVisibleCatalog)}}
+  {{else}}
+    {{>menu-catalog }}
+  {{/if}}
+  {{#if (getUndefined isVisiableMainBlock)}}
+    {{#if isAdvertisingPosterVisible}} {{> find}} {{/if}}
+    <div class="body-block-of-elements">
+      {{{body}}}
+    </div>
+  
+  {{else}}
+  {{{body}}}
+  {{/if}}
+  </div>
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<div id="main_block" class="block_manage_products">
+    {{!-- <div id="nav_menu" class="nav_menu">
+        <ul>
+            <li><span style="font-size: large; color:black">Меню редактора</span></li>
+            <li class="nav_menu_element" onclick="showContent('categories')"><span>Категории</span></li>
+            <li class="nav_menu_element" onclick="showContent('addProduct')"><span>Добавление товара</span></li>
+            <li class="nav_menu_element"><a href=""></a></li>
+            <li class="nav_menu_element"><a href=""></a></li>
+        </ul>
+    </div> --}}
+    <div id="categories" class="block_content">
+        
+        <ul>
+        {{#each categories}}
+        <li id="{{getIndividualCategoriesNumber this}}">
+
+            <input type="checkbox" name="activator" id="activateCtegiri">
+            <button><i class="bi bi-trash"></i></button>
+
+            <button><i class="bi bi-pencil"></i></button>
+            <span>{{getCategoriesName this}}</span>
+            <button class="button-subcategory" id="add-subcategory"><i class="bi bi-plus"></i></button>
+        </li>
+        {{/each}}
+        </ul>
+    </div>
+    <div id="addProduct" class="block_content hide">
+        
+       
+    </div>
+    {{!-- <nav class="site-settings-categoris"> --}}
+    
+    {{!-- </nav> --}}
+</div>
+<script>
+    function showContent(id){
+        let mainBlock = document.getElementById('main_block');
+        for(let i = 0; i < mainBlock.children.length; i++){
+            let el = mainBlock.children[i];
+            if(el.id != 'nav_menu' && !el.classList.contains('hide')) el.classList.toggle('hide');
+        }
+        let element = document.getElementById(id);
+        //if (element.classList.contains('hide')) element.classList.remove('hide'); // contains - поиск подкласса, remove - удаление подкласса, toggle - добавление в класс нового подкласса
+         element.classList.remove('hide');
+    }
+</script>
+<style>
+    .block_manage_products {
+        width: 100%;
+        height: 100vh;
+        box-sizing: border-box;
+        padding: none;
+        border: 2px solid #ccc;
+    }
+
+
+    .block_content {
+        width: 80%;
+        padding: 20px;
+
+    }
+  
+</style>

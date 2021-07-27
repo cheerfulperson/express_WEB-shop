@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
+
+.block_holder {
+
+    width: 1000px;
+    display: flex;
+
+    justify-content: center;
+    text-align: center;
+
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.nav__list {
+
+    position: relative;
+
+    margin-top: 10px;
+    margin-right: 10px;
+
+
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%);
+    border-radius: 5px;
+
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+
+    background: white;
+}
+
+.account_nav__link {
+    width: 230px;
+    display: block;
+
+    padding-left: 10px;
+    white-space: nowrap;
+    height: 30px;
+    line-height: 30px;
+    color: black;
+    border-bottom: 1px solid #dfdfdf;
+    cursor: pointer;
+
+    outline: 0;
+}
+
+.account_nav__list a:hover {
+    color: #b5b5b5;
+}
+
+.text_settings_menu {
+    color: #b5b5b5;
+}
+
+.settings_image {
+    position: absolute;
+    margin-top: 30px;
+    width: 320px;
+    height: 320px;
+    cursor: auto;
+}
+
+.form_section {
+    width: 750px;
+
+    margin-top: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 25%);
+    border-radius: 5px;
+
+    background: white;
+}
+
+.button_delete_user_image {
+    float: left;
+    margin-left: 110px;
+    margin-top: 130px;
+}
+
+.button_delete_user_image button:hover i {
+    color: red;
+}
+
+.choose_image {
+    display: flex;
+    padding-left: 40px;
+}
+
+.choose_image li {
+    width: 50px;
+    height: 50px;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.choose_image li:hover {
+    box-shadow: 0 0 10px 2px #000000;
+}
+
+.pretty_button button {
+    z-index: 1;
+    overflow: hidden;
+    background: transparent;
+    position: relative;
+    padding: 8px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1em;
+    letter-spacing: 2px;
+    transition: 0.2s ease;
+    font-weight: bold;
+    margin: 20px 10px;
+    border: 4px solid rgb(92, 255, 92);
+    color: var(--blue);
+}
+
+.pretty_button button:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    background: rgb(92, 255, 92);
+    z-index: -1;
+    transition: 0.2s ease;
+
+}
+
+.pretty_button button:hover {
+    color: white;
+    background: rgb(92, 255, 92);
+    transition: 0.2s ease;
+}
+
+.pretty_button button:hover:before {
+    width: 100%;
+}
+
+.form_inner_block {
+    margin-left: 50px;
+    width: 550px;
+}
+
+
+.delete_account button {
+    border: 4px solid red;
+}
+.delete_account button:before {
+    background: rgb(201, 0, 0);
+}
+
+.delete_account button:hover {
+    background: rgb(201, 0, 0);
+}
+.incorrect{
+    color: red;
+}
